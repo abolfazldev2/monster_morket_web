@@ -1,0 +1,184 @@
+{
+  "nav": {
+    "home": "خانه",
+    "cs2": "سی‌اس ۲",
+    "dota2": "دوتا ۲",
+    "wow": "وارکرفت",
+    "faceit": "فیس‌ایت",
+    "offers": "تخفیف‌ها",
+    "bestSellers": "پرفروش‌ها",
+    "search": "جستجو"
+  },
+  "common": {
+    "addToCart": "افزودن به سبد خرید",
+    "buyNow": "خرید سریع",
+    "wishlist": "علاقه‌مندی‌ها",
+    "price": "قیمت",
+    "availability": "موجودی",
+    "available": "موجود",
+    "outOfStock": "ناموجود",
+    "delivery": "روش تحویل",
+    "quantity": "تعداد",
+    "subtotal": "جمع جزء",
+    "discount": "تخفیف",
+    "total": "مجموع",
+    "proceedToCheckout": "ادامه به تسویه‌حساب",
+    "continueShopping": "ادامه خرید",
+    "login": "ورود",
+    "register": "ثبت‌نام",
+    "logout": "خروج"
+  },
+  "checkout": {
+    "title": "تسویه‌حساب",
+    "requiredInfo": "اطلاعات مورد نیاز",
+    "placeOrder": "ثبت سفارش"
+  },
+  "order": {
+    "waitingForPayment": "در انتظار پرداخت",
+    "contactTelegram": "تماس با مانستر مارکت در تلگرام",
+    "paymentNotice": "پرداخت پس از تماس شما در تلگرام، به‌صورت دستی توسط تیم ما تایید می‌شود. این صفحه همیشه وضعیت واقعی و به‌روز سفارش شما را نشان می‌دهد."
+  },
+  "home": {
+    "heroTitle": "بازار بازی شما",
+    "heroSubtitle": "سی‌اس ۲، دوتا ۲، وارکرفت و فیس‌ایت — تحویل امن.",
+    "browse": "مشاهده محصولات",
+    "featuredGames": "بازی‌های ویژه",
+    "bestSellers": "پرفروش‌ترین‌ها",
+    "whyUs": "چرا مانستر مارکت؟",
+    "whyUsItems": {
+      "secure": "سفارش امن",
+      "fast": "تحویل سریع",
+      "trusted": "مارکت‌پلیس معتبر",
+      "multi": "محصولات چندین بازی"
+    }
+  },
+  "admin": {
+    "nav": {
+      "overview": "نمای کلی",
+      "orders": "سفارش‌ها",
+      "fulfillment": "تحویل سفارش",
+      "products": "محصولات",
+      "games": "بازی‌ها",
+      "coupons": "کد تخفیف",
+      "reviews": "نظرات",
+      "users": "کاربران",
+      "auditLogs": "گزارش اکشن‌ها"
+    },
+    "overview": {
+      "title": "نمای کلی",
+      "totalSales": "مجموع فروش",
+      "todaySales": "فروش امروز",
+      "totalOrders": "کل سفارش‌ها",
+      "pendingOrders": "سفارش‌های در انتظار",
+      "pendingPayments": "پرداخت‌های در انتظار",
+      "activeProducts": "محصولات فعال",
+      "registeredUsers": "کاربران ثبت‌نامی",
+      "salesOverTime": "روند فروش (۳۰ روز اخیر)",
+      "ordersOverTime": "روند سفارش‌ها (۳۰ روز اخیر)",
+      "topProducts": "پرفروش‌ترین محصولات",
+      "salesByGame": "فروش به‌تفکیک بازی",
+      "pendingFulfillment": "صف تحویل به‌تفکیک وضعیت"
+    },
+    "orders": {
+      "title": "سفارش‌ها",
+      "order": "سفارش",
+      "total": "مجموع",
+      "status": "وضعیت",
+      "created": "تاریخ ثبت"
+    },
+    "orderDetails": {
+      "customer": "مشتری",
+      "total": "مجموع",
+      "payment": "پرداخت",
+      "confirmPayment": "تایید پرداخت",
+      "items": "اقلام",
+      "sessionExpired": "نشست شما منقضی شده — لطفاً صفحه را رفرش کنید و دوباره وارد شوید.",
+      "couldNotConfirm": "تایید پرداخت انجام نشد."
+    },
+    "fulfillment": {
+      "title": "صف تحویل سفارش",
+      "addNote": "افزودن یادداشت داخلی...",
+      "add": "افزودن"
+    },
+    "products": {
+      "title": "محصولات",
+      "newProduct": "محصول جدید",
+      "editProduct": "ویرایش محصول",
+      "game": "بازی",
+      "category": "دسته‌بندی",
+      "name": "نام",
+      "slug": "اسلاگ",
+      "productType": "نوع محصول",
+      "deliveryMethod": "روش تحویل",
+      "basePrice": "قیمت پایه",
+      "stock": "موجودی (خالی = نامحدود)",
+      "description": "توضیحات",
+      "active": "فعال (در فروشگاه نمایش داده شود)",
+      "save": "ذخیره",
+      "cancel": "انصراف",
+      "delete": "حذف",
+      "edit": "ویرایش",
+      "noGames": "هنوز هیچ بازی‌ای وجود ندارد — اول از صفحه‌ی بازی‌ها یکی بسازید (با حداقل یک دسته‌بندی)، سپس محصول اضافه کنید.",
+      "pickGameCategory": "یک بازی و دسته‌بندی انتخاب کنید — اگر لیست خالی است، اول از صفحه‌ی بازی‌ها بسازید.",
+      "requiredError": "نام، اسلاگ و قیمت پایه الزامی هستند.",
+      "columnStatus": "وضعیت",
+      "columnPrice": "قیمت",
+      "columnStock": "موجودی"
+    },
+    "games": {
+      "title": "بازی‌ها و دسته‌بندی‌ها",
+      "newGameName": "نام بازی جدید",
+      "slug": "اسلاگ",
+      "addGame": "افزودن بازی",
+      "deactivate": "غیرفعال",
+      "activate": "فعال",
+      "categoryName": "نام دسته‌بندی",
+      "addCategory": "+ افزودن دسته‌بندی"
+    },
+    "coupons": {
+      "title": "کدهای تخفیف",
+      "newCoupon": "کد تخفیف جدید",
+      "code": "کد",
+      "type": "نوع",
+      "percentage": "درصدی",
+      "fixed": "مبلغ ثابت",
+      "value": "مقدار",
+      "minOrderAmount": "حداقل مبلغ سفارش",
+      "maxUses": "حداکثر استفاده (خالی = نامحدود)",
+      "save": "ذخیره",
+      "cancel": "انصراف",
+      "used": "استفاده‌شده",
+      "deactivate": "غیرفعال",
+      "activate": "فعال",
+      "delete": "حذف"
+    },
+    "reviews": {
+      "title": "نظرات",
+      "approve": "تایید",
+      "unapprove": "لغو تایید",
+      "delete": "حذف",
+      "noReviews": "هنوز نظری ثبت نشده.",
+      "on": "برای"
+    },
+    "users": {
+      "title": "کاربران",
+      "warning": "فقط سوپر ادمین می‌تواند نقش کاربران را تغییر دهد. مراقب باشید — دادن نقش FULFILLMENT_ADMIN یا SUPER_ADMIN دسترسی به پرداخت‌ها، تحویل سفارش و (برای سوپر ادمین) نقش سایر کاربران را می‌دهد.",
+      "username": "نام کاربری",
+      "email": "ایمیل",
+      "role": "نقش",
+      "active": "فعال",
+      "suspend": "مسدود کردن",
+      "reactivate": "فعال‌سازی مجدد"
+    },
+    "auditLogs": {
+      "title": "گزارش اکشن‌ها",
+      "when": "زمان",
+      "admin": "ادمین",
+      "action": "اکشن",
+      "target": "هدف",
+      "change": "تغییر",
+      "from": "از",
+      "to": "به"
+    }
+  }
+}

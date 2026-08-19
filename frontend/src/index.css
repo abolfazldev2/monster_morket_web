@@ -1,0 +1,104 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  color-scheme: dark;
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-bg-base text-text-primary antialiased font-body;
+}
+
+h1, h2, h3, h4, .font-display {
+  font-family: "Rajdhani", sans-serif;
+  letter-spacing: 0.01em;
+}
+
+/* logical-property utilities so RTL languages (fa, ar) never need per-component overrides */
+.ms-auto { margin-inline-start: auto; }
+.me-auto { margin-inline-end: auto; }
+
+/* ---- Selection & scrollbar ---- */
+::selection {
+  background: rgba(226, 59, 59, 0.35);
+  color: #fff;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #0a0b0d;
+}
+::-webkit-scrollbar-thumb {
+  background: #2a2d33;
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #e23b3b;
+}
+
+/* ---- Signature: angled-corner "monster cut" — used on hero panels & featured cards ---- */
+.monster-cut {
+  clip-path: polygon(0 0, 100% 0, 100% 88%, 94% 100%, 0 100%);
+}
+.monster-cut-sm {
+  clip-path: polygon(0 0, 100% 0, 100% 92%, 96% 100%, 0 100%);
+}
+
+/* ---- Animated ambient grid backdrop (subtle HUD texture, used behind the hero) ---- */
+.grid-backdrop {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(226, 59, 59, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(226, 59, 59, 0.06) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, black 40%, transparent 100%);
+  pointer-events: none;
+}
+
+/* ---- Drifting glow orbs behind the hero ---- */
+.glow-orb {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(80px);
+  pointer-events: none;
+}
+
+/* ---- Shimmer skeleton (replaces plain pulse) ---- */
+.skeleton-shimmer {
+  background: linear-gradient(90deg, #131418 0%, #1b1d22 50%, #131418 100%);
+  background-size: 800px 100%;
+  animation: shimmer 1.6s linear infinite;
+}
+
+/* ---- Spotlight-follow hover glow on cards (position set via inline --x/--y custom props) ---- */
+.spotlight-card {
+  position: relative;
+  overflow: hidden;
+}
+.spotlight-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(220px circle at var(--x, 50%) var(--y, 50%), rgba(226, 59, 59, 0.15), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  pointer-events: none;
+}
+.spotlight-card:hover::before {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

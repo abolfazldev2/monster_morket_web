@@ -1,0 +1,184 @@
+{
+  "nav": {
+    "home": "Главная",
+    "cs2": "CS2",
+    "dota2": "Dota 2",
+    "wow": "WoW",
+    "faceit": "FACEIT",
+    "offers": "Акции",
+    "bestSellers": "Хиты продаж",
+    "search": "Поиск"
+  },
+  "common": {
+    "addToCart": "В корзину",
+    "buyNow": "Купить сейчас",
+    "wishlist": "Избранное",
+    "price": "Цена",
+    "availability": "Наличие",
+    "available": "В наличии",
+    "outOfStock": "Нет в наличии",
+    "delivery": "Способ доставки",
+    "quantity": "Количество",
+    "subtotal": "Промежуточный итог",
+    "discount": "Скидка",
+    "total": "Итого",
+    "proceedToCheckout": "Перейти к оформлению",
+    "continueShopping": "Продолжить покупки",
+    "login": "Войти",
+    "register": "Регистрация",
+    "logout": "Выйти"
+  },
+  "checkout": {
+    "title": "Оформление заказа",
+    "requiredInfo": "Необходимая информация",
+    "placeOrder": "Оформить заказ"
+  },
+  "order": {
+    "waitingForPayment": "Ожидание оплаты",
+    "contactTelegram": "Написать MONSTER Market в Telegram",
+    "paymentNotice": "Оплата подтверждается вручную нашей командой после вашего обращения в Telegram. На этой странице всегда отображается актуальный статус заказа."
+  },
+  "home": {
+    "heroTitle": "Ваш игровой маркетплейс",
+    "heroSubtitle": "CS2, Dota 2, WoW и FACEIT — безопасная доставка.",
+    "browse": "Смотреть товары",
+    "featuredGames": "Популярные игры",
+    "bestSellers": "Хиты продаж",
+    "whyUs": "Почему MONSTER Market?",
+    "whyUsItems": {
+      "secure": "Безопасный заказ",
+      "fast": "Быстрое выполнение",
+      "trusted": "Надёжный маркетплейс",
+      "multi": "Товары из разных игр"
+    }
+  },
+  "admin": {
+    "nav": {
+      "overview": "Обзор",
+      "orders": "Заказы",
+      "fulfillment": "Выполнение",
+      "products": "Товары",
+      "games": "Игры",
+      "coupons": "Купоны",
+      "reviews": "Отзывы",
+      "users": "Пользователи",
+      "auditLogs": "Журнал действий"
+    },
+    "overview": {
+      "title": "Обзор",
+      "totalSales": "Общий объём продаж",
+      "todaySales": "Продажи сегодня",
+      "totalOrders": "Всего заказов",
+      "pendingOrders": "Заказы в ожидании",
+      "pendingPayments": "Ожидающие оплаты",
+      "activeProducts": "Активные товары",
+      "registeredUsers": "Зарегистрированные пользователи",
+      "salesOverTime": "Продажи по времени (30 дней)",
+      "ordersOverTime": "Заказы по времени (30 дней)",
+      "topProducts": "Топ товаров",
+      "salesByGame": "Продажи по играм",
+      "pendingFulfillment": "Выполнение по статусу"
+    },
+    "orders": {
+      "title": "Заказы",
+      "order": "Заказ",
+      "total": "Итого",
+      "status": "Статус",
+      "created": "Создан"
+    },
+    "orderDetails": {
+      "customer": "Клиент",
+      "total": "Итого",
+      "payment": "Оплата",
+      "confirmPayment": "Подтвердить оплату",
+      "items": "Товары",
+      "sessionExpired": "Сессия истекла — обновите страницу и войдите снова.",
+      "couldNotConfirm": "Не удалось подтвердить оплату."
+    },
+    "fulfillment": {
+      "title": "Очередь выполнения",
+      "addNote": "Добавить внутреннюю заметку...",
+      "add": "Добавить"
+    },
+    "products": {
+      "title": "Товары",
+      "newProduct": "Новый товар",
+      "editProduct": "Редактировать товар",
+      "game": "Игра",
+      "category": "Категория",
+      "name": "Название",
+      "slug": "Слаг",
+      "productType": "Тип товара",
+      "deliveryMethod": "Способ доставки",
+      "basePrice": "Базовая цена",
+      "stock": "Остаток (пусто = неограничено)",
+      "description": "Описание",
+      "active": "Активен (виден в магазине)",
+      "save": "Сохранить",
+      "cancel": "Отмена",
+      "delete": "Удалить",
+      "edit": "Редактировать",
+      "noGames": "Пока нет игр — сначала создайте игру (с хотя бы одной категорией) на странице «Игры».",
+      "pickGameCategory": "Выберите игру и категорию — если списки пусты, создайте их на странице «Игры».",
+      "requiredError": "Название, слаг и базовая цена обязательны.",
+      "columnStatus": "Статус",
+      "columnPrice": "Цена",
+      "columnStock": "Остаток"
+    },
+    "games": {
+      "title": "Игры и категории",
+      "newGameName": "Название новой игры",
+      "slug": "Слаг",
+      "addGame": "Добавить игру",
+      "deactivate": "Деактивировать",
+      "activate": "Активировать",
+      "categoryName": "Название категории",
+      "addCategory": "+ Добавить категорию"
+    },
+    "coupons": {
+      "title": "Купоны",
+      "newCoupon": "Новый купон",
+      "code": "Код",
+      "type": "Тип",
+      "percentage": "Процент",
+      "fixed": "Фиксированная сумма",
+      "value": "Значение",
+      "minOrderAmount": "Мин. сумма заказа",
+      "maxUses": "Макс. использований (пусто = без ограничений)",
+      "save": "Сохранить",
+      "cancel": "Отмена",
+      "used": "Использовано",
+      "deactivate": "Деактивировать",
+      "activate": "Активировать",
+      "delete": "Удалить"
+    },
+    "reviews": {
+      "title": "Отзывы",
+      "approve": "Одобрить",
+      "unapprove": "Отменить одобрение",
+      "delete": "Удалить",
+      "noReviews": "Пока нет отзывов.",
+      "on": "на"
+    },
+    "users": {
+      "title": "Пользователи",
+      "warning": "Только Super Admin может менять роли. Будьте осторожны — роль FULFILLMENT_ADMIN или SUPER_ADMIN даёт доступ к платежам, выполнению заказов и (для Super Admin) ролям других пользователей.",
+      "username": "Имя пользователя",
+      "email": "Эл. почта",
+      "role": "Роль",
+      "active": "Активен",
+      "suspend": "Заблокировать",
+      "reactivate": "Восстановить"
+    },
+    "auditLogs": {
+      "title": "Журнал действий",
+      "when": "Когда",
+      "admin": "Админ",
+      "action": "Действие",
+      "target": "Цель",
+      "change": "Изменение",
+      "from": "из",
+      "to": "в"
+    }
+  }
+}

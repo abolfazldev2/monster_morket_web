@@ -1,0 +1,184 @@
+{
+  "nav": {
+    "home": "Home",
+    "cs2": "CS2",
+    "dota2": "Dota 2",
+    "wow": "WoW",
+    "faceit": "FACEIT",
+    "offers": "Offers",
+    "bestSellers": "Best Sellers",
+    "search": "Search"
+  },
+  "common": {
+    "addToCart": "Add to Cart",
+    "buyNow": "Buy Now",
+    "wishlist": "Wishlist",
+    "price": "Price",
+    "availability": "Availability",
+    "available": "Available",
+    "outOfStock": "Out of Stock",
+    "delivery": "Delivery",
+    "quantity": "Quantity",
+    "subtotal": "Subtotal",
+    "discount": "Discount",
+    "total": "Total",
+    "proceedToCheckout": "Proceed to Checkout",
+    "continueShopping": "Continue Shopping",
+    "login": "Login",
+    "register": "Register",
+    "logout": "Logout"
+  },
+  "checkout": {
+    "title": "Checkout",
+    "requiredInfo": "Required Information",
+    "placeOrder": "Place Order"
+  },
+  "order": {
+    "waitingForPayment": "Waiting for Payment",
+    "contactTelegram": "Contact MONSTER Market on Telegram",
+    "paymentNotice": "Payment is confirmed manually by our team after you contact us on Telegram. This page always shows the real, current status of your order."
+  },
+  "home": {
+    "heroTitle": "Your Gaming Marketplace",
+    "heroSubtitle": "CS2, Dota 2, WoW and FACEIT — delivered securely.",
+    "browse": "Browse Products",
+    "featuredGames": "Featured Games",
+    "bestSellers": "Best Sellers",
+    "whyUs": "Why MONSTER Market?",
+    "whyUsItems": {
+      "secure": "Secure ordering",
+      "fast": "Fast fulfillment",
+      "trusted": "Trusted marketplace",
+      "multi": "Multi-game products"
+    }
+  },
+  "admin": {
+    "nav": {
+      "overview": "Overview",
+      "orders": "Orders",
+      "fulfillment": "Fulfillment",
+      "products": "Products",
+      "games": "Games",
+      "coupons": "Coupons",
+      "reviews": "Reviews",
+      "users": "Users",
+      "auditLogs": "Audit Logs"
+    },
+    "overview": {
+      "title": "Overview",
+      "totalSales": "Total Sales",
+      "todaySales": "Today's Sales",
+      "totalOrders": "Total Orders",
+      "pendingOrders": "Pending Orders",
+      "pendingPayments": "Pending Payments",
+      "activeProducts": "Active Products",
+      "registeredUsers": "Registered Users",
+      "salesOverTime": "Sales over time (last 30 days)",
+      "ordersOverTime": "Orders over time (last 30 days)",
+      "topProducts": "Top products",
+      "salesByGame": "Sales by game",
+      "pendingFulfillment": "Pending fulfillment by status"
+    },
+    "orders": {
+      "title": "Orders",
+      "order": "Order",
+      "total": "Total",
+      "status": "Status",
+      "created": "Created"
+    },
+    "orderDetails": {
+      "customer": "Customer",
+      "total": "Total",
+      "payment": "Payment",
+      "confirmPayment": "Confirm Payment",
+      "items": "Items",
+      "sessionExpired": "Your session expired — please refresh the page and log in again.",
+      "couldNotConfirm": "Could not confirm payment."
+    },
+    "fulfillment": {
+      "title": "Fulfillment Queue",
+      "addNote": "Add internal note...",
+      "add": "Add"
+    },
+    "products": {
+      "title": "Products",
+      "newProduct": "New Product",
+      "editProduct": "Edit Product",
+      "game": "Game",
+      "category": "Category",
+      "name": "Name",
+      "slug": "Slug",
+      "productType": "Product type",
+      "deliveryMethod": "Delivery method",
+      "basePrice": "Base price",
+      "stock": "Stock (blank = unlimited)",
+      "description": "Description",
+      "active": "Active (visible in the storefront)",
+      "save": "Save",
+      "cancel": "Cancel",
+      "delete": "Delete",
+      "edit": "Edit",
+      "noGames": "No games exist yet — go to the Games page and create one (with at least one category) before adding a product.",
+      "pickGameCategory": "Pick a Game and a Category — create one first on the Games page if the lists are empty.",
+      "requiredError": "Name, Slug, and Base price are required.",
+      "columnStatus": "Status",
+      "columnPrice": "Price",
+      "columnStock": "Stock"
+    },
+    "games": {
+      "title": "Games & Categories",
+      "newGameName": "New game name",
+      "slug": "Slug",
+      "addGame": "Add Game",
+      "deactivate": "Deactivate",
+      "activate": "Activate",
+      "categoryName": "Category name",
+      "addCategory": "+ Add category"
+    },
+    "coupons": {
+      "title": "Coupons",
+      "newCoupon": "New Coupon",
+      "code": "Code",
+      "type": "Type",
+      "percentage": "Percentage",
+      "fixed": "Fixed Amount",
+      "value": "Value",
+      "minOrderAmount": "Min order amount",
+      "maxUses": "Max uses (blank = unlimited)",
+      "save": "Save",
+      "cancel": "Cancel",
+      "used": "Used",
+      "deactivate": "Deactivate",
+      "activate": "Activate",
+      "delete": "Delete"
+    },
+    "reviews": {
+      "title": "Reviews",
+      "approve": "Approve",
+      "unapprove": "Unapprove",
+      "delete": "Delete",
+      "noReviews": "No reviews yet.",
+      "on": "on"
+    },
+    "users": {
+      "title": "Users",
+      "warning": "Only Super Admins can change roles. Be careful — granting FULFILLMENT_ADMIN or SUPER_ADMIN gives access to payments, fulfillment, and (for Super Admin) other users' roles.",
+      "username": "Username",
+      "email": "Email",
+      "role": "Role",
+      "active": "Active",
+      "suspend": "Suspend",
+      "reactivate": "Reactivate"
+    },
+    "auditLogs": {
+      "title": "Audit Logs",
+      "when": "When",
+      "admin": "Admin",
+      "action": "Action",
+      "target": "Target",
+      "change": "Change",
+      "from": "from",
+      "to": "to"
+    }
+  }
+}

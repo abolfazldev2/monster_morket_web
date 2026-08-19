@@ -1,0 +1,184 @@
+{
+  "nav": {
+    "home": "الرئيسية",
+    "cs2": "CS2",
+    "dota2": "Dota 2",
+    "wow": "WoW",
+    "faceit": "FACEIT",
+    "offers": "العروض",
+    "bestSellers": "الأكثر مبيعًا",
+    "search": "بحث"
+  },
+  "common": {
+    "addToCart": "أضف إلى السلة",
+    "buyNow": "اشترِ الآن",
+    "wishlist": "المفضلة",
+    "price": "السعر",
+    "availability": "التوفر",
+    "available": "متوفر",
+    "outOfStock": "غير متوفر",
+    "delivery": "طريقة التسليم",
+    "quantity": "الكمية",
+    "subtotal": "المجموع الفرعي",
+    "discount": "الخصم",
+    "total": "الإجمالي",
+    "proceedToCheckout": "المتابعة إلى الدفع",
+    "continueShopping": "متابعة التسوق",
+    "login": "تسجيل الدخول",
+    "register": "إنشاء حساب",
+    "logout": "تسجيل الخروج"
+  },
+  "checkout": {
+    "title": "الدفع",
+    "requiredInfo": "المعلومات المطلوبة",
+    "placeOrder": "تأكيد الطلب"
+  },
+  "order": {
+    "waitingForPayment": "بانتظار الدفع",
+    "contactTelegram": "تواصل مع MONSTER Market عبر تيليجرام",
+    "paymentNotice": "يتم تأكيد الدفع يدويًا من فريقنا بعد تواصلك عبر تيليجرام. تعرض هذه الصفحة دائمًا الحالة الفعلية لطلبك."
+  },
+  "home": {
+    "heroTitle": "سوق الألعاب الخاص بك",
+    "heroSubtitle": "CS2 وDota 2 وWoW وFACEIT — تسليم آمن.",
+    "browse": "تصفح المنتجات",
+    "featuredGames": "الألعاب المميزة",
+    "bestSellers": "الأكثر مبيعًا",
+    "whyUs": "لماذا MONSTER Market؟",
+    "whyUsItems": {
+      "secure": "طلب آمن",
+      "fast": "تنفيذ سريع",
+      "trusted": "سوق موثوق",
+      "multi": "منتجات من ألعاب متعددة"
+    }
+  },
+  "admin": {
+    "nav": {
+      "overview": "نظرة عامة",
+      "orders": "الطلبات",
+      "fulfillment": "التنفيذ",
+      "products": "المنتجات",
+      "games": "الألعاب",
+      "coupons": "الكوبونات",
+      "reviews": "المراجعات",
+      "users": "المستخدمون",
+      "auditLogs": "سجل التدقيق"
+    },
+    "overview": {
+      "title": "نظرة عامة",
+      "totalSales": "إجمالي المبيعات",
+      "todaySales": "مبيعات اليوم",
+      "totalOrders": "إجمالي الطلبات",
+      "pendingOrders": "الطلبات المعلقة",
+      "pendingPayments": "المدفوعات المعلقة",
+      "activeProducts": "المنتجات النشطة",
+      "registeredUsers": "المستخدمون المسجلون",
+      "salesOverTime": "المبيعات عبر الزمن (آخر 30 يومًا)",
+      "ordersOverTime": "الطلبات عبر الزمن (آخر 30 يومًا)",
+      "topProducts": "أفضل المنتجات",
+      "salesByGame": "المبيعات حسب اللعبة",
+      "pendingFulfillment": "التنفيذ المعلق حسب الحالة"
+    },
+    "orders": {
+      "title": "الطلبات",
+      "order": "الطلب",
+      "total": "الإجمالي",
+      "status": "الحالة",
+      "created": "تاريخ الإنشاء"
+    },
+    "orderDetails": {
+      "customer": "العميل",
+      "total": "الإجمالي",
+      "payment": "الدفع",
+      "confirmPayment": "تأكيد الدفع",
+      "items": "العناصر",
+      "sessionExpired": "انتهت جلستك — يرجى تحديث الصفحة وتسجيل الدخول مرة أخرى.",
+      "couldNotConfirm": "تعذر تأكيد الدفع."
+    },
+    "fulfillment": {
+      "title": "قائمة التنفيذ",
+      "addNote": "إضافة ملاحظة داخلية...",
+      "add": "إضافة"
+    },
+    "products": {
+      "title": "المنتجات",
+      "newProduct": "منتج جديد",
+      "editProduct": "تعديل المنتج",
+      "game": "اللعبة",
+      "category": "الفئة",
+      "name": "الاسم",
+      "slug": "المعرف",
+      "productType": "نوع المنتج",
+      "deliveryMethod": "طريقة التسليم",
+      "basePrice": "السعر الأساسي",
+      "stock": "المخزون (فارغ = غير محدود)",
+      "description": "الوصف",
+      "active": "نشط (يظهر في المتجر)",
+      "save": "حفظ",
+      "cancel": "إلغاء",
+      "delete": "حذف",
+      "edit": "تعديل",
+      "noGames": "لا توجد ألعاب بعد — أنشئ واحدة من صفحة الألعاب (مع فئة واحدة على الأقل) قبل إضافة منتج.",
+      "pickGameCategory": "اختر لعبة وفئة — إذا كانت القوائم فارغة أنشئها من صفحة الألعاب أولاً.",
+      "requiredError": "الاسم والمعرف والسعر الأساسي مطلوبة.",
+      "columnStatus": "الحالة",
+      "columnPrice": "السعر",
+      "columnStock": "المخزون"
+    },
+    "games": {
+      "title": "الألعاب والفئات",
+      "newGameName": "اسم اللعبة الجديدة",
+      "slug": "المعرف",
+      "addGame": "إضافة لعبة",
+      "deactivate": "تعطيل",
+      "activate": "تفعيل",
+      "categoryName": "اسم الفئة",
+      "addCategory": "+ إضافة فئة"
+    },
+    "coupons": {
+      "title": "الكوبونات",
+      "newCoupon": "كوبون جديد",
+      "code": "الرمز",
+      "type": "النوع",
+      "percentage": "نسبة مئوية",
+      "fixed": "مبلغ ثابت",
+      "value": "القيمة",
+      "minOrderAmount": "الحد الأدنى لمبلغ الطلب",
+      "maxUses": "الحد الأقصى للاستخدام (فارغ = غير محدود)",
+      "save": "حفظ",
+      "cancel": "إلغاء",
+      "used": "المستخدم",
+      "deactivate": "تعطيل",
+      "activate": "تفعيل",
+      "delete": "حذف"
+    },
+    "reviews": {
+      "title": "المراجعات",
+      "approve": "موافقة",
+      "unapprove": "إلغاء الموافقة",
+      "delete": "حذف",
+      "noReviews": "لا توجد مراجعات بعد.",
+      "on": "على"
+    },
+    "users": {
+      "title": "المستخدمون",
+      "warning": "فقط المشرف الأعلى يمكنه تغيير الأدوار. كن حذرًا — منح دور FULFILLMENT_ADMIN أو SUPER_ADMIN يمنح الوصول إلى المدفوعات والتنفيذ (وللمشرف الأعلى) أدوار المستخدمين الآخرين.",
+      "username": "اسم المستخدم",
+      "email": "البريد الإلكتروني",
+      "role": "الدور",
+      "active": "نشط",
+      "suspend": "تعليق",
+      "reactivate": "إعادة التفعيل"
+    },
+    "auditLogs": {
+      "title": "سجل التدقيق",
+      "when": "الوقت",
+      "admin": "المشرف",
+      "action": "الإجراء",
+      "target": "الهدف",
+      "change": "التغيير",
+      "from": "من",
+      "to": "إلى"
+    }
+  }
+}
