@@ -1,10 +1,12 @@
 import React, { createContext, useCallback, useContext, useEffect, useState } from "react";
 
 import { cartApi } from "../services/resources";
+import { useAuth } from "./AuthContext";
 
 const CartContext = createContext(null);
 
 export function CartProvider({ children }) {
+  const { user } = useAuth(); // <--- 2. دریافت استیت یوزر
   const [cart, setCart] = useState({ items: [], subtotal: 0 });
   const [isLoading, setIsLoading] = useState(true);
 
@@ -18,9 +20,10 @@ export function CartProvider({ children }) {
     }
   }, []);
 
+  // <--- 3. اضافه کردن user به آرایه وابستگی‌ها
   useEffect(() => {
     refresh();
-  }, [refresh]);
+  }, [refresh, user]);
 
   const addItem = async (productId, variantId, quantity = 1) => {
     await cartApi.addItem({ product_id: productId, variant_id: variantId || undefined, quantity });

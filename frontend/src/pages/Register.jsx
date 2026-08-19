@@ -23,12 +23,20 @@ export default function Register() {
       navigate("/account");
     } catch (err) {
       const data = err.response?.data;
-      setError(data ? Object.values(data).flat().join(" ") : "Could not register.");
+      if (data) {
+        // پیام‌های ارور بک‌اند را به شکل خوانا و تفکیک‌شده نمایش می‌دهیم
+        const messages = Object.entries(data).map(([key, msgs]) => {
+          const field = key === "non_field_errors" ? "" : `${key}: `;
+          return `${field}${Array.isArray(msgs) ? msgs.join(" ") : msgs}`;
+        });
+        setError(messages.join(" | "));
+      } else {
+        setError("Could not register. Please try again.");
+      }
     } finally {
       setLoading(false);
     }
   };
-
   return (
     <div className="max-w-sm mx-auto py-16">
       <h1 className="text-2xl font-bold mb-6 text-center">{t("common.register")}</h1>
