@@ -56,7 +56,43 @@ export default function Checkout() {
     }
   };
 
-  const handleSubmit = async () => {
+const handleSubmit = async () => {
+    // ۱. اعتبارسنجی محلی فیلدهای داینامیک قبل از ارسال به سرور
+    const newErrors = {};
+    let hasError = false;
+
+    cart.items.forEach((item) => {
+      const product = productBySlug[item.product_slug];
+      if (product?.required_fields) {
+        product.required_fields.forEach((field) => {
+          const val = values[item.id]?.[field.field_key];
+          
+          // بررسی اجباری بودن فیلد
+          if (field.is_required && (!val || !val.trim())) {
+            if (!newErrors[item.id]) newErrors[item.id] = {};
+            newErrors[item.id][field.field_key] = "This field is required.";
+            hasError = true;
+          } 
+          // بررسی با عبارات باقاعده (Regex) که از بک‌اند می‌آید (مثل چک کردن فرمت لینک استیم)
+          else if (val && field.validation_regex) {
+            const regex = new RegExp(field.validation_regex);
+            if (!regex.test(val)) {
+              if (!newErrors[item.id]) newErrors[item.id] = {};
+              newErrors[item.id][field.field_key] = "Invalid format.";
+              hasError = true;
+            }
+          }
+        });
+      }
+    });
+
+    // اگر اروری بود، متوقف می‌شویم و ارورها را زیر فیلدها نشان می‌دهیم
+    if (hasError) {
+      setErrors(newErrors);
+      return;
+    }
+
+    // ۲. ارسال درخواست نهایی به سرور
     setSubmitting(true);
     setErrors({});
     try {
@@ -64,7 +100,7 @@ export default function Checkout() {
       await refresh();
       navigate(`/account/orders/${data.order_number}`);
     } catch (err) {
-      const detail = err.response?.data?.detail || "Could not place order. Check the required fields.";
+      const detail = err.response?.data?.detail || "Could not place order. Please try again.";
       setErrors({ _global: detail });
     } finally {
       setSubmitting(false);
@@ -98,6 +134,7 @@ export default function Checkout() {
                   <DynamicFieldRenderer
                     fields={product.required_fields}
                     values={values[item.id] || {}}
+                    errors={errors[item.id] || {}} // <--- این خط اضافه شد
                     onChange={(key, value) => handleFieldChange(item.id, key, value)}
                   />
                 </>
