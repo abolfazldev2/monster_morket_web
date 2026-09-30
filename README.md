@@ -34,92 +34,82 @@ all 38 pages from the spec. Explicitly stubbed or simplified:
 - Email delivery for password reset is not wired to a real mail provider
   (the token is generated and stored; sending the email is a one-function
   Celery task away — see the `TODO` in `apps/users/views.py`).
-- No automated tests yet.
+- Automated tests currently cover order creation, payments, fulfillment, and reviews.
 
-## Running locally without Docker (fastest way to iterate)
+## Run the project on a new machine with Docker
 
-Backend:
+Prerequisites: Git, Docker Engine or Docker Desktop, and the Docker Compose plugin.
+Run these commands from a terminal:
 
-```bash
-cd backend
-python -m venv venv && source venv/bin/activate
-pip install -r requirements.txt
-cp ../.env.example ../.env   # then edit DJANGO_SECRET_KEY, POSTGRES_*, etc.
-export $(cat ../.env | xargs)  # or use python-decouple's .env loading directly
-python manage.py migrate
-python manage.py createsuperuser
-python manage.py seed_demo_data   # populates CS2/Dota2/WoW/FACEIT demo products
-python manage.py runserver
-```
+    git clone https://github.com/abolfazldev2/monster_morket_web.git
+    cd monster_morket_web
+    cp .env.example .env
 
-You'll need a local Postgres and Redis running (or point `POSTGRES_HOST`/
-`REDIS_URL` at Docker-run instances of just those two services).
+Edit .env and set unique values for DJANGO_SECRET_KEY and POSTGRES_PASSWORD.
+Keep .env private; Git ignores it. The sample already sets Telegram support to
+abolfazls-s.
 
-Frontend:
+Build and start all services:
 
-```bash
-cd frontend
-cp .env.example .env   # VITE_API_BASE_URL=http://localhost:8000/api
-npm install
-npm run dev
-```
+    docker compose up -d --build
+    docker compose ps
 
-## Deploying to a VPS with Docker (production)
+Database migrations run automatically when the backend starts. Add demo
+products and create an administrator:
 
-1. **Get a server.** Any VPS with Docker + Docker Compose installed (Ubuntu
-   22.04/24.04 is a safe default). Point a domain's A record at its IP if
-   you have one — not required to get started.
+    docker compose exec backend python manage.py seed_demo_data
+    docker compose exec backend python manage.py createsuperuser
 
-2. **Copy the project to the server:**
+Public registration creates customers by default. Give the superuser access to
+the React admin dashboard by replacing YOUR_USERNAME with the username you just
+created:
 
-   ```bash
-   git clone <your-repo-url> monster-market   # or scp the folder up
-   cd monster-market
-   ```
+    docker compose exec backend python manage.py shell -c "from apps.users.models import User; User.objects.filter(username='YOUR_USERNAME').update(role='SUPER_ADMIN')"
 
-3. **Configure secrets:**
+Open the storefront at http://localhost, the React admin at
+http://localhost/admin, and Django admin at http://localhost/django-admin/.
+The product categories are /shop/cs2, /shop/dota2, /shop/wow, and /shop/faceit.
 
-   ```bash
-   cp .env.example .env
-   nano .env
-   ```
+Useful commands:
 
-   At minimum set `DJANGO_SECRET_KEY` (any long random string —
-   `python -c "import secrets; print(secrets.token_urlsafe(50))"` works),
-   `POSTGRES_PASSWORD`, and `DJANGO_ALLOWED_HOSTS`/`CORS_ALLOWED_ORIGINS`
-   to your actual domain or server IP.
+    docker compose logs -f backend
+    docker compose down
 
-4. **Build and start everything:**
+docker compose down stops containers and keeps database data. To run the
+backend tests:
 
-   ```bash
-   docker compose up -d --build
-   ```
+    docker compose exec backend sh -lc 'DJANGO_SETTINGS_MODULE=config.settings.test python manage.py test apps.orders apps.payments apps.fulfillment apps.reviews'
 
-   This starts Postgres, Redis, the Django backend (migrations run
-   automatically on container start via `entrypoint.sh`), Celery worker +
-   beat, the built React app, and nginx on port 80.
+## Run locally without Docker
 
-5. **Create an admin user and seed demo products:**
+The backend needs PostgreSQL and Redis. Copy the root .env.example to .env and
+adjust POSTGRES_HOST and REDIS_URL for your local services, then run:
 
-   ```bash
-   docker compose exec backend python manage.py createsuperuser
-   docker compose exec backend python manage.py seed_demo_data
-   ```
+    cd backend
+    python3 -m venv .venv
+    source .venv/bin/activate
+    pip install -r requirements.txt
+    set -a; source ../.env; set +a
+    python manage.py migrate
+    python manage.py seed_demo_data
+    python manage.py runserver
 
-6. **Visit the site** at `http://<your-server-ip>/` — the storefront is
-   live, `/django-admin/` has the full Django admin, and the React admin
-   dashboard is at `/admin` once you log in with an account whose `role`
-   is set to `SUPER_ADMIN`, `FULFILLMENT_ADMIN`, or `SUPPORT` (set this in
-   `/django-admin/users/user/` for now).
+In a second terminal, run the frontend:
 
-7. **Put HTTPS in front of it** (recommended before real traffic): the
-   simplest path is adding [Caddy](https://caddyserver.com/) or
-   [nginx-proxy + acme-companion](https://github.com/nginx-proxy/acme-companion)
-   in front of the `nginx` service, or terminating TLS with a managed load
-   balancer if your VPS provider offers one. `config/settings/prod.py`
-   already assumes HTTPS is in place (`SECURE_SSL_REDIRECT = True`, secure
-   cookies) — set those to `False` temporarily if you're testing without
-   TLS first.
+    cd frontend
+    npm ci
+    npm run dev
+
+The Vite dev server uses frontend/.env.example and proxies API requests to
+http://localhost:8000/api.
+
+## Production deployment
+
+The Compose setup above is documented for local development and testing.
+Before exposing this project to public traffic, configure HTTPS, review and
+harden Django production settings, use real secrets and allowed hosts, and
+prepare a database backup plan. Never reuse sample .env values on a public
+server.
 
 ## Extending it (per the architecture doc)
 
