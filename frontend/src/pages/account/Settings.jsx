@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 import { useLocale } from "../../context/LocaleContext";
 
@@ -10,12 +11,13 @@ const LANGUAGES = [
 ];
 
 export default function Settings() {
+  const { t } = useTranslation();
   const { language, setLanguage } = useLocale();
 
   return (
     <div className="max-w-md">
-      <h1 className="text-2xl font-bold mb-6">Settings</h1>
-      <label className="block mb-2 text-sm text-text-secondary">Language</label>
+      <h1 className="text-2xl font-bold mb-6">{t("account.settings")}</h1>
+      <label className="block mb-2 text-sm text-text-secondary">{t("common.language")}</label>
       <select
         value={language}
         onChange={(e) => setLanguage(e.target.value)}

@@ -41,7 +41,9 @@ export default function Shop({ mode }) {
         ? t("nav.offers")
         : mode === "search"
           ? `${t("nav.search")}: ${queryFromUrl}`
-          : gameSlug || "Shop";
+          : gameSlug
+            ? t(`nav.${gameSlug}`, { defaultValue: gameSlug })
+            : t("nav.shop");
 
   return (
     <div>
@@ -61,9 +63,9 @@ export default function Shop({ mode }) {
             onChange={(e) => setSort(e.target.value)}
             className="bg-bg-surface border border-border-subtle rounded-lg px-3 py-2 text-sm"
           >
-            <option value="newest">Newest</option>
-            <option value="price_asc">Price: Low to High</option>
-            <option value="price_desc">Price: High to Low</option>
+            <option value="newest">{t("shop.sortNewest")}</option>
+            <option value="price_asc">{t("shop.sortPriceAsc")}</option>
+            <option value="price_desc">{t("shop.sortPriceDesc")}</option>
           </select>
         </div>
       </div>
@@ -77,7 +79,7 @@ export default function Shop({ mode }) {
       ) : data.length ? (
         <ProductGrid products={data} />
       ) : (
-        <EmptyState title="No products found" subtitle="Try a different search or check back soon." />
+        <EmptyState title={t("shop.noProducts")} subtitle={t("shop.noProductsHint")} />
       )}
     </div>
   );

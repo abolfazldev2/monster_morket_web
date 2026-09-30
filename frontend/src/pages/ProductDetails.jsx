@@ -129,7 +129,7 @@ export default function ProductDetails() {
 
         {product.required_fields?.length > 0 && (
           <p className="text-xs text-text-muted mt-4">
-            This product requires {product.required_fields.map((f) => f.label).join(", ")} at checkout.
+          {t("product.requiredAtCheckout", { fields: product.required_fields.map((f) => f.label).join(", ") })}
           </p>
         )}
       </div>

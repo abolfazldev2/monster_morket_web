@@ -50,7 +50,7 @@ export default function Checkout() {
       setCouponResult(data);
     } catch (err) {
       setCouponResult(null);
-      setCouponError(err.response?.data?.detail || "Invalid coupon.");
+      setCouponError(t("checkout.invalidCoupon"));
     } finally {
       setCouponChecking(false);
     }
@@ -70,7 +70,7 @@ const handleSubmit = async () => {
           // بررسی اجباری بودن فیلد
           if (field.is_required && (!val || !val.trim())) {
             if (!newErrors[item.id]) newErrors[item.id] = {};
-            newErrors[item.id][field.field_key] = "This field is required.";
+            newErrors[item.id][field.field_key] = t("checkout.fieldRequired");
             hasError = true;
           } 
           // بررسی با عبارات باقاعده (Regex) که از بک‌اند می‌آید (مثل چک کردن فرمت لینک استیم)
@@ -78,7 +78,7 @@ const handleSubmit = async () => {
             const regex = new RegExp(field.validation_regex);
             if (!regex.test(val)) {
               if (!newErrors[item.id]) newErrors[item.id] = {};
-              newErrors[item.id][field.field_key] = "Invalid format.";
+              newErrors[item.id][field.field_key] = t("checkout.invalidFormat");
               hasError = true;
             }
           }
@@ -100,7 +100,7 @@ const handleSubmit = async () => {
       await refresh();
       navigate(`/account/orders/${data.order_number}`);
     } catch (err) {
-      const detail = err.response?.data?.detail || "Could not place order. Please try again.";
+      const detail = err.response?.data?.detail || t("checkout.orderFailed");
       setErrors({ _global: detail });
     } finally {
       setSubmitting(false);
@@ -153,17 +153,17 @@ const handleSubmit = async () => {
               setCouponResult(null);
               setCouponError("");
             }}
-            placeholder="Coupon code"
+            placeholder={t("checkout.couponCode")}
             className="flex-1 bg-bg-surfaceAlt border border-border-subtle rounded-lg px-3 py-2 text-sm"
           />
           <Button variant="secondary" disabled={couponChecking} onClick={handleApplyCoupon}>
-            Apply
+            {t("checkout.applyCoupon")}
           </Button>
         </div>
         {couponError && <p className="text-accent-danger text-sm mb-3">{couponError}</p>}
         {couponResult?.valid && (
           <p className="text-accent-success text-sm mb-3">
-            Coupon applied — {couponResult.discount_amount} {cart.currency || ""} off
+            {t("checkout.couponApplied", { amount: couponResult.discount_amount, currency: cart.currency || "" })}
           </p>
         )}
 

@@ -26,17 +26,96 @@
     "continueShopping": "ادامه خرید",
     "login": "ورود",
     "register": "ثبت‌نام",
-    "logout": "خروج"
+    "logout": "خروج",
+    "username": "نام کاربری",
+    "password": "گذرواژه",
+    "email": "ایمیل",
+    "firstName": "نام",
+    "lastName": "نام خانوادگی",
+    "saved": "ذخیره شد",
+    "saveChanges": "ذخیره تغییرات",
+    "language": "زبان",
+    "support": "پشتیبانی",
+    "telegramSupport": "پشتیبانی تلگرام در صفحهٔ هر سفارش در دسترس است.",
+    "remove": "حذف",
+    "forgotPassword": "فراموشی گذرواژه",
+    "invalidCredentials": "نام کاربری یا گذرواژه نادرست است."
+  },
+  "cart": {
+    "emptyTitle": "سبد خرید خالی است",
+    "emptySubtitle": "محصولات را ببینید و کالای دلخواهتان را به سبد اضافه کنید."
+  },
+  "shop": {
+    "sortNewest": "جدیدترین",
+    "sortPriceAsc": "قیمت: از کم به زیاد",
+    "sortPriceDesc": "قیمت: از زیاد به کم",
+    "noProducts": "محصولی پیدا نشد",
+    "noProductsHint": "جستجوی دیگری انجام دهید یا بعداً دوباره سر بزنید."
+  },
+  "orders": {
+    "title": "سفارش‌ها",
+    "emptyTitle": "هنوز سفارشی ندارید",
+    "emptySubtitle": "سفارش‌های شما اینجا نمایش داده می‌شوند."
+  },
+  "account": {
+    "dashboard": "پیشخوان",
+    "profile": "حساب کاربری",
+    "settings": "تنظیمات",
+    "notifications": "اعلان‌ها",
+    "welcome": "خوش آمدی، {{username}}",
+    "summary": "خلاصه‌ای از حساب کاربری شما.",
+    "totalOrders": "مجموع سفارش‌ها",
+    "totalSpent": "مجموع خرید",
+    "emptyWishlist": "فهرست علاقه‌مندی‌ها خالی است",
+    "emptyWishlistHint": "محصولات موردنظرتان را ذخیره کنید.",
+    "noNotifications": "اعلانی ندارید",
+    "allCaughtUp": "همه‌چیز به‌روز است.",
+    "resetSent": "اگر حسابی با این ایمیل وجود داشته باشد، راهنمای بازنشانی گذرواژه برایتان ارسال می‌شود.",
+    "sendResetLink": "ارسال پیوند بازنشانی"
+  },
+  "reviews": {
+    "title": "دیدگاه‌ها",
+    "empty": "هنوز دیدگاهی ثبت نشده است.",
+    "leaveReview": "ثبت دیدگاه",
+    "placeholder": "تجربه‌تان از این محصول را بنویسید...",
+    "submit": "ارسال دیدگاه",
+    "loginRequired": "برای ثبت دیدگاه وارد حساب شوید."
+  },
+  "product": {
+    "requiredAtCheckout": "هنگام تسویه‌حساب، اطلاعات {{fields}} لازم است."
+  },
+  "status": {
+    "PENDING": "در انتظار",
+    "WAITING_FOR_PAYMENT": "در انتظار پرداخت",
+    "PAID": "پرداخت‌شده",
+    "PAYMENT_RECEIVED": "پرداخت دریافت شد",
+    "PROCESSING": "در حال انجام",
+    "STEAM_FRIEND_REQUESTED": "درخواست دوستی استیم ارسال شد",
+    "WAITING_TRADE": "در انتظار معامله",
+    "DELIVERED": "تحویل‌شده",
+    "COMPLETED": "تکمیل‌شده",
+    "CANCELLED": "لغوشده",
+    "REFUNDED": "بازپرداخت‌شده",
+    "FAILED": "ناموفق"
   },
   "checkout": {
     "title": "تسویه‌حساب",
     "requiredInfo": "اطلاعات مورد نیاز",
-    "placeOrder": "ثبت سفارش"
+    "placeOrder": "ثبت سفارش",
+    "invalidCoupon": "کد تخفیف نامعتبر یا منقضی شده است.",
+    "fieldRequired": "تکمیل این فیلد الزامی است.",
+    "invalidFormat": "قالب واردشده معتبر نیست.",
+    "orderFailed": "ثبت سفارش انجام نشد. دوباره تلاش کنید.",
+    "couponCode": "کد تخفیف",
+    "applyCoupon": "اعمال",
+    "couponApplied": "کد تخفیف اعمال شد — {{amount}} {{currency}} تخفیف"
   },
   "order": {
     "waitingForPayment": "در انتظار پرداخت",
     "contactTelegram": "تماس با مانستر مارکت در تلگرام",
-    "paymentNotice": "پرداخت پس از تماس شما در تلگرام، به‌صورت دستی توسط تیم ما تایید می‌شود. این صفحه همیشه وضعیت واقعی و به‌روز سفارش شما را نشان می‌دهد."
+    "paymentNotice": "پرداخت پس از تماس شما در تلگرام، به‌صورت دستی توسط تیم ما تایید می‌شود. این صفحه همیشه وضعیت واقعی و به‌روز سفارش شما را نشان می‌دهد.",
+    "items": "اقلام سفارش",
+    "openTelegramWeb": "باز کردن نسخهٔ وب تلگرام"
   },
   "home": {
     "heroTitle": "بازار بازی شما",
@@ -93,7 +172,12 @@
       "confirmPayment": "تایید پرداخت",
       "items": "اقلام",
       "sessionExpired": "نشست شما منقضی شده — لطفاً صفحه را رفرش کنید و دوباره وارد شوید.",
-      "couldNotConfirm": "تایید پرداخت انجام نشد."
+      "couldNotConfirm": "تایید پرداخت انجام نشد.",
+      "transactionReference": "شماره تراکنش / شناسه رسید",
+      "transactionReferenceRequired": "پس از بررسی پرداخت، شماره تراکنش را وارد کنید.",
+      "confirmCancelUnpaid": "این سفارش پرداخت‌نشده لغو و موجودی آن به انبار برگردانده شود؟",
+      "cancelUnpaid": "لغو سفارش پرداخت‌نشده",
+      "couldNotCancel": "لغو سفارش پرداخت‌نشده انجام نشد."
     },
     "fulfillment": {
       "title": "صف تحویل سفارش",

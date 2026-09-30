@@ -36,18 +36,26 @@ export default function OrderDetails() {
           <p className="font-medium mb-1">{t("order.waitingForPayment")}</p>
           <p className="text-sm text-text-secondary mb-4">{t("order.paymentNotice")}</p>
           <a
-            href={order.payment.telegram_contact_url}
+            href={order.payment.telegram_app_url}
             target="_blank"
             rel="noreferrer"
             className="inline-block bg-accent-primary text-white px-4 py-2 rounded-lg font-medium hover:bg-accent-primaryHover"
           >
             {t("order.contactTelegram")}
           </a>
+          <a
+            href={order.payment.telegram_contact_url}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-block text-sm text-accent-primary underline ms-3"
+          >
+            {t("order.openTelegramWeb")}
+          </a>
         </div>
       )}
 
       <div className="bg-bg-surface border border-border-subtle rounded-card p-5">
-        <p className="font-medium mb-4">Items</p>
+        <p className="font-medium mb-4">{t("order.items")}</p>
         {order.items.map((item) => (
           <div key={item.id} className="flex justify-between items-center py-2 border-b border-border-subtle last:border-0">
             <div>

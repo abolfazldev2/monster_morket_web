@@ -23,6 +23,9 @@ def transition_fulfillment(fulfillment: Fulfillment, action: str, admin_user, ip
 
     old_status = fulfillment.status
     new_status = matching["to_status"]
+    flow = strategy.get_status_flow()
+    if old_status not in flow or flow.index(new_status) != flow.index(old_status) + 1:
+        raise ValueError(f"Action '{action}' is not valid from fulfillment status '{old_status}'.")
     fulfillment.status = new_status
 
     ts_field = _TIMESTAMP_FIELD_BY_STATUS.get(new_status)
@@ -32,6 +35,13 @@ def transition_fulfillment(fulfillment: Fulfillment, action: str, admin_user, ip
         update_fields.append(ts_field)
 
     fulfillment.save(update_fields=update_fields)
+
+    if new_status == Fulfillment.Status.PROCESSING:
+        from apps.orders.models import Order
+        order = fulfillment.order_item.order
+        if order.status == Order.Status.PAID:
+            order.status = Order.Status.PROCESSING
+            order.save(update_fields=["status"])
 
     AuditLog.record(
         user=admin_user, action=f"fulfillment_{action}", target=fulfillment,
@@ -56,8 +66,9 @@ def _maybe_complete_order(fulfillment: Fulfillment):
         order.status = Order.Status.COMPLETED
         order.save(update_fields=["status"])
 
+        from django.db import transaction
         from apps.notifications.services import notify_order_status_changed
-        notify_order_status_changed(order)
+        transaction.on_commit(lambda: notify_order_status_changed(order))
 
 
 @transaction.atomic

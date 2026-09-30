@@ -27,7 +27,15 @@ class FulfillmentSerializer(serializers.ModelSerializer):
         ]
 
     def get_available_actions(self, obj):
-        return get_strategy(obj.delivery_method).get_admin_actions()
+        strategy = get_strategy(obj.delivery_method)
+        flow = strategy.get_status_flow()
+        if obj.status not in flow:
+            return []
+        next_index = flow.index(obj.status) + 1
+        if next_index >= len(flow):
+            return []
+        next_status = flow[next_index]
+        return [action for action in strategy.get_admin_actions() if action["to_status"] == next_status]
 
 
 class FulfillmentAdminListSerializer(serializers.ModelSerializer):

@@ -165,4 +165,4 @@ CELERY_BEAT_SCHEDULE = {
 }
 
 # ---- MONSTER Market specific ----
-TELEGRAM_SUPPORT_USERNAME = config("TELEGRAM_SUPPORT_USERNAME", default="monster_market_support")
+TELEGRAM_SUPPORT_USERNAME = config("TELEGRAM_SUPPORT_USERNAME", default="abolfazls-s")

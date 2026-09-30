@@ -1,11 +1,13 @@
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 
 import { EmptyState, Skeleton } from "../../components/common/Feedback";
 import { wishlistApi } from "../../services/resources";
 
 export default function Wishlist() {
+  const { t } = useTranslation();
   const queryClient = useQueryClient();
   const { data, isLoading } = useQuery({
     queryKey: ["wishlist"],
@@ -18,7 +20,7 @@ export default function Wishlist() {
   };
 
   if (isLoading) return <Skeleton className="h-64" />;
-  if (!data?.length) return <EmptyState title="Your wishlist is empty" subtitle="Save products you're interested in." />;
+  if (!data?.length) return <EmptyState title={t("account.emptyWishlist")} subtitle={t("account.emptyWishlistHint")} />;
 
   return (
     <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
@@ -32,7 +34,7 @@ export default function Wishlist() {
             onClick={() => handleRemove(item.id)}
             className="text-xs text-text-muted hover:text-accent-danger mt-2"
           >
-            Remove
+            {t("common.remove")}
           </button>
         </div>
       ))}

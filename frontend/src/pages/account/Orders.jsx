@@ -1,18 +1,20 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 
 import { EmptyState, Skeleton, StatusBadge } from "../../components/common/Feedback";
 import { ordersApi } from "../../services/resources";
 
 export default function Orders() {
+  const { t } = useTranslation();
   const { data, isLoading } = useQuery({
     queryKey: ["orders"],
     queryFn: () => ordersApi.list().then((r) => r.data.results || r.data),
   });
 
   if (isLoading) return <Skeleton className="h-64" />;
-  if (!data?.length) return <EmptyState title="No orders yet" subtitle="Your orders will show up here." />;
+  if (!data?.length) return <EmptyState title={t("orders.emptyTitle")} subtitle={t("orders.emptySubtitle")} />;
 
   return (
     <div className="flex flex-col gap-3">

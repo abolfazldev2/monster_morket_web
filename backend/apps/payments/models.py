@@ -28,6 +28,7 @@ class Payment(TimeStampedModel):
     amount = models.DecimalField(max_digits=12, decimal_places=2)
     currency = models.CharField(max_length=8, default="USD")
     telegram_contact_reference = models.CharField(max_length=64, blank=True)
+    transaction_reference = models.CharField(max_length=128, blank=True)
     confirmed_by = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, blank=True, related_name="confirmed_payments"
     )

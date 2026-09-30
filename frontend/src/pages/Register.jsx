@@ -42,20 +42,20 @@ export default function Register() {
       <h1 className="text-2xl font-bold mb-6 text-center">{t("common.register")}</h1>
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         <Input
-          label="Username"
+          label={t("common.username")}
           value={form.username}
           onChange={(e) => setForm({ ...form, username: e.target.value })}
           required
         />
         <Input
-          label="Email"
+          label={t("common.email")}
           type="email"
           value={form.email}
           onChange={(e) => setForm({ ...form, email: e.target.value })}
           required
         />
         <Input
-          label="Password"
+          label={t("common.password")}
           type="password"
           value={form.password}
           onChange={(e) => setForm({ ...form, password: e.target.value })}

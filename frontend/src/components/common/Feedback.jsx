@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 const STATUS_COLORS = {
   PENDING: "bg-text-muted/20 text-text-secondary",
@@ -16,10 +17,11 @@ const STATUS_COLORS = {
 };
 
 export function StatusBadge({ status }) {
+  const { t } = useTranslation();
   const classes = STATUS_COLORS[status] || "bg-text-muted/20 text-text-secondary";
   return (
     <span className={`inline-block px-3 py-1 rounded-full text-xs font-semibold ${classes}`}>
-      {status?.replaceAll("_", " ")}
+      {t(`status.${status}`, { defaultValue: status?.replaceAll("_", " ") })}
     </span>
   );
 }

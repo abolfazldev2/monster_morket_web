@@ -1,10 +1,12 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 import { StatusBadge } from "../common/Feedback";
 
 const ORDER_FLOW = ["PENDING", "WAITING_FOR_PAYMENT", "PAID", "PROCESSING", "COMPLETED"];
 
 export default function OrderStatusTimeline({ status }) {
+  const { t } = useTranslation();
   const currentIndex = ORDER_FLOW.indexOf(status);
   const isTerminalNegative = status === "CANCELLED" || status === "REFUNDED";
 
@@ -23,7 +25,7 @@ export default function OrderStatusTimeline({ status }) {
                 : "bg-text-muted/10 text-text-muted"
             }`}
           >
-            {step.replaceAll("_", " ")}
+          {t(`status.${step}`, { defaultValue: step.replaceAll("_", " ") })}
           </div>
           {i < ORDER_FLOW.length - 1 && (
             <div className={`h-px w-4 ${i < currentIndex ? "bg-accent-primary" : "bg-border-subtle"}`} />

@@ -1,10 +1,12 @@
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 import { EmptyState, Skeleton } from "../../components/common/Feedback";
 import { notificationsApi } from "../../services/resources";
 
 export default function Notifications() {
+  const { t } = useTranslation();
   const queryClient = useQueryClient();
   const { data, isLoading } = useQuery({
     queryKey: ["notifications"],
@@ -17,7 +19,7 @@ export default function Notifications() {
   };
 
   if (isLoading) return <Skeleton className="h-64" />;
-  if (!data?.length) return <EmptyState title="No notifications" subtitle="You're all caught up." />;
+  if (!data?.length) return <EmptyState title={t("account.noNotifications")} subtitle={t("account.allCaughtUp")} />;
 
   return (
     <div className="flex flex-col gap-2">

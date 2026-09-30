@@ -11,7 +11,7 @@ class Review(TimeStampedModel):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="reviews")
     rating = models.PositiveSmallIntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)])
     comment = models.TextField(blank=True)
-    is_approved = models.BooleanField(default=True)
+    is_approved = models.BooleanField(default=False)
 
     class Meta:
         unique_together = [("product", "user")]

@@ -8,14 +8,18 @@ from .models import Payment
 
 
 @transaction.atomic
-def confirm_payment(payment: Payment, admin_user, ip_address=None, note=""):
+def confirm_payment(payment: Payment, admin_user, transaction_reference="", ip_address=None, note=""):
+    payment = Payment.objects.select_for_update().get(pk=payment.pk)
+    if payment.status != Payment.Status.WAITING_FOR_PAYMENT:
+        raise ValueError("Only payments waiting for payment can be confirmed.")
     old_status = payment.status
     payment.status = Payment.Status.PAYMENT_RECEIVED
+    payment.transaction_reference = transaction_reference.strip()
     payment.confirmed_by = admin_user
     payment.confirmed_at = timezone.now()
-    payment.save(update_fields=["status", "confirmed_by", "confirmed_at"])
+    payment.save(update_fields=["status", "transaction_reference", "confirmed_by", "confirmed_at"])
 
-    order = payment.order
+    order = Order.objects.select_for_update().get(pk=payment.order_id)
     old_order_status = order.status
     order.status = Order.Status.PAID
     order.save(update_fields=["status"])
@@ -31,11 +35,18 @@ def confirm_payment(payment: Payment, admin_user, ip_address=None, note=""):
         ip_address=ip_address,
     )
 
-    # move straight into PROCESSING — fulfillment queue picks it up
-    order.status = Order.Status.PROCESSING
-    order.save(update_fields=["status"])
+    from apps.fulfillment.models import Fulfillment
+    fulfillments = Fulfillment.objects.filter(
+        order_item__order=order,
+        status=Fulfillment.Status.WAITING_FOR_PAYMENT,
+    )
+    for fulfillment in fulfillments:
+        fulfillment.status = Fulfillment.Status.PAID
+        fulfillment.save(update_fields=["status"])
 
     from apps.notifications.services import notify_payment_confirmed
-    notify_payment_confirmed(order)
+    transaction.on_commit(lambda: notify_payment_confirmed(order))
+    from apps.notifications.services import notify_order_status_changed
+    transaction.on_commit(lambda: notify_order_status_changed(order))
 
     return payment

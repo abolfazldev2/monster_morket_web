@@ -1,11 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 import { Skeleton } from "../../components/common/Feedback";
 import { useAuth } from "../../context/AuthContext";
 import { authApi } from "../../services/resources";
 
 export default function Dashboard() {
+  const { t } = useTranslation();
   const { user } = useAuth();
   const { data: stats, isLoading } = useQuery({
     queryKey: ["account-stats"],
@@ -14,8 +16,8 @@ export default function Dashboard() {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold mb-1">Welcome, {user?.username}</h1>
-      <p className="text-text-secondary mb-6">Here's a summary of your account.</p>
+      <h1 className="text-2xl font-bold mb-1">{t("account.welcome", { username: user?.username })}</h1>
+      <p className="text-text-secondary mb-6">{t("account.summary")}</p>
 
       {isLoading ? (
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -25,10 +27,10 @@ export default function Dashboard() {
         </div>
       ) : (
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <StatCard label="Total Orders" value={stats?.total_orders} />
-          <StatCard label="Completed" value={stats?.completed_orders} />
-          <StatCard label="Pending" value={stats?.pending_orders} />
-          <StatCard label="Total Spent" value={`$${stats?.total_spent}`} />
+          <StatCard label={t("account.totalOrders")} value={stats?.total_orders} />
+          <StatCard label={t("status.COMPLETED")} value={stats?.completed_orders} />
+          <StatCard label={t("status.PENDING")} value={stats?.pending_orders} />
+          <StatCard label={t("account.totalSpent")} value={`$${stats?.total_spent}`} />
         </div>
       )}
     </div>

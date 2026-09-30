@@ -13,12 +13,12 @@ export default function AccountLayout() {
   if (!user) return <Navigate to="/login" replace />;
 
   const links = [
-    { to: "/account", label: "Dashboard", end: true },
-    { to: "/account/profile", label: "Profile" },
-    { to: "/account/orders", label: "Orders" },
+    { to: "/account", label: t("account.dashboard"), end: true },
+    { to: "/account/profile", label: t("account.profile") },
+    { to: "/account/orders", label: t("orders.title") },
     { to: "/account/wishlist", label: t("common.wishlist") },
-    { to: "/account/notifications", label: "Notifications" },
-    { to: "/account/settings", label: "Settings" },
+    { to: "/account/notifications", label: t("account.notifications") },
+    { to: "/account/settings", label: t("account.settings") },
   ];
 
   return (

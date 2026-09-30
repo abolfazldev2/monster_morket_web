@@ -15,8 +15,8 @@ export default function Cart() {
   if (!cart.items?.length) {
     return (
       <EmptyState
-        title="Your cart is empty"
-        subtitle="Browse products and add something you like."
+        title={t("cart.emptyTitle")}
+        subtitle={t("cart.emptySubtitle")}
         action={
           <Link to="/">
             <Button>{t("common.continueShopping")}</Button>

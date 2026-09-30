@@ -22,7 +22,7 @@ export default function Login() {
       await login(form.username, form.password);
       navigate("/account");
     } catch {
-      setError("Invalid username or password.");
+        setError(t("common.invalidCredentials"));
     } finally {
       setLoading(false);
     }
@@ -33,13 +33,13 @@ export default function Login() {
       <h1 className="text-2xl font-bold mb-6 text-center">{t("common.login")}</h1>
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         <Input
-          label="Username"
+          label={t("common.username")}
           value={form.username}
           onChange={(e) => setForm({ ...form, username: e.target.value })}
           required
         />
         <Input
-          label="Password"
+          label={t("common.password")}
           type="password"
           value={form.password}
           onChange={(e) => setForm({ ...form, password: e.target.value })}
@@ -52,7 +52,7 @@ export default function Login() {
       </form>
       <div className="flex justify-between mt-4 text-sm text-text-secondary">
         <Link to="/forgot-password" className="hover:text-text-primary">
-          Forgot password?
+          {t("common.forgotPassword")}
         </Link>
         <Link to="/register" className="hover:text-text-primary">
           {t("common.register")}

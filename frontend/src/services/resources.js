@@ -55,7 +55,12 @@ export const adminFulfillmentApi = {
 };
 
 export const adminPaymentsApi = {
-  confirm: (id, note) => api.post(`/payments/${id}/confirm/`, { note }),
+  confirm: (id, transactionReference, note) =>
+    api.post(`/payments/${id}/confirm/`, { transaction_reference: transactionReference, note }),
+};
+
+export const adminOrdersApi = {
+  cancelUnpaid: (orderNumber) => api.post(`/orders/${orderNumber}/cancel_unpaid/`),
 };
 
 export const adminProductsApi = {

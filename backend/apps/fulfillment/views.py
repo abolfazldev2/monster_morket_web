@@ -1,5 +1,6 @@
 from django.contrib.auth import get_user_model
 from rest_framework import permissions, viewsets
+from rest_framework.exceptions import ValidationError
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
@@ -36,7 +37,10 @@ class FulfillmentAdminViewSet(viewsets.ReadOnlyModelViewSet):
     def transition(self, request, pk=None):
         fulfillment = self.get_object()
         action_name = request.data.get("action")
-        transition_fulfillment(fulfillment, action_name, request.user, ip_address=get_client_ip(request))
+        try:
+            transition_fulfillment(fulfillment, action_name, request.user, ip_address=get_client_ip(request))
+        except ValueError as exc:
+            raise ValidationError({"detail": str(exc)}) from exc
         return Response(FulfillmentSerializer(fulfillment).data)
 
     @action(detail=True, methods=["post"])

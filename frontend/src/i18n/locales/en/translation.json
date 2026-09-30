@@ -26,17 +26,96 @@
     "continueShopping": "Continue Shopping",
     "login": "Login",
     "register": "Register",
-    "logout": "Logout"
+    "logout": "Logout",
+    "username": "Username",
+    "password": "Password",
+    "email": "Email",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "saved": "Saved!",
+    "saveChanges": "Save changes",
+    "language": "Language",
+    "support": "Support",
+    "telegramSupport": "Telegram support is available on every order.",
+    "remove": "Remove",
+    "forgotPassword": "Forgot password",
+    "invalidCredentials": "Invalid username or password."
+  },
+  "cart": {
+    "emptyTitle": "Your cart is empty",
+    "emptySubtitle": "Browse products and add something you like."
+  },
+  "shop": {
+    "sortNewest": "Newest",
+    "sortPriceAsc": "Price: Low to High",
+    "sortPriceDesc": "Price: High to Low",
+    "noProducts": "No products found",
+    "noProductsHint": "Try a different search or check back soon."
+  },
+  "orders": {
+    "title": "Orders",
+    "emptyTitle": "No orders yet",
+    "emptySubtitle": "Your orders will show up here."
+  },
+  "account": {
+    "dashboard": "Dashboard",
+    "profile": "Profile",
+    "settings": "Settings",
+    "notifications": "Notifications",
+    "welcome": "Welcome, {{username}}",
+    "summary": "Here's a summary of your account.",
+    "totalOrders": "Total orders",
+    "totalSpent": "Total spent",
+    "emptyWishlist": "Your wishlist is empty",
+    "emptyWishlistHint": "Save products you're interested in.",
+    "noNotifications": "No notifications",
+    "allCaughtUp": "You're all caught up.",
+    "resetSent": "If an account exists for that email, we've sent password reset instructions.",
+    "sendResetLink": "Send reset link"
+  },
+  "reviews": {
+    "title": "Reviews",
+    "empty": "No reviews yet.",
+    "leaveReview": "Leave a review",
+    "placeholder": "Share your experience with this product...",
+    "submit": "Submit review",
+    "loginRequired": "Log in to leave a review."
+  },
+  "product": {
+    "requiredAtCheckout": "This product requires {{fields}} at checkout."
+  },
+  "status": {
+    "PENDING": "Pending",
+    "WAITING_FOR_PAYMENT": "Waiting for payment",
+    "PAID": "Paid",
+    "PAYMENT_RECEIVED": "Payment received",
+    "PROCESSING": "Processing",
+    "STEAM_FRIEND_REQUESTED": "Steam friend request sent",
+    "WAITING_TRADE": "Waiting for trade",
+    "DELIVERED": "Delivered",
+    "COMPLETED": "Completed",
+    "CANCELLED": "Cancelled",
+    "REFUNDED": "Refunded",
+    "FAILED": "Failed"
   },
   "checkout": {
     "title": "Checkout",
     "requiredInfo": "Required Information",
-    "placeOrder": "Place Order"
+    "placeOrder": "Place Order",
+    "invalidCoupon": "Invalid or expired coupon.",
+    "fieldRequired": "This field is required.",
+    "invalidFormat": "Invalid format.",
+    "orderFailed": "Could not place order. Please try again.",
+    "couponCode": "Coupon code",
+    "applyCoupon": "Apply",
+    "couponApplied": "Coupon applied — {{amount}} {{currency}} off"
   },
   "order": {
     "waitingForPayment": "Waiting for Payment",
     "contactTelegram": "Contact MONSTER Market on Telegram",
-    "paymentNotice": "Payment is confirmed manually by our team after you contact us on Telegram. This page always shows the real, current status of your order."
+    "paymentNotice": "Payment is confirmed manually by our team after you contact us on Telegram. This page always shows the real, current status of your order.",
+    "items": "Items",
+    "openTelegramWeb": "Open Telegram Web"
   },
   "home": {
     "heroTitle": "Your Gaming Marketplace",
@@ -93,7 +172,12 @@
       "confirmPayment": "Confirm Payment",
       "items": "Items",
       "sessionExpired": "Your session expired — please refresh the page and log in again.",
-      "couldNotConfirm": "Could not confirm payment."
+      "couldNotConfirm": "Could not confirm payment.",
+      "transactionReference": "Transaction reference / receipt ID",
+      "transactionReferenceRequired": "Enter the transaction reference after verifying the payment.",
+      "confirmCancelUnpaid": "Cancel this unpaid order and return its stock to inventory?",
+      "cancelUnpaid": "Cancel unpaid order",
+      "couldNotCancel": "Could not cancel the unpaid order."
     },
     "fulfillment": {
       "title": "Fulfillment Queue",

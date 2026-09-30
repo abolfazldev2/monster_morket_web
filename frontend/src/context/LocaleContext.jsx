@@ -14,9 +14,10 @@ export function LocaleProvider({ children }) {
   const dir = RTL_LANGUAGES.has(language) ? "rtl" : "ltr";
 
   useEffect(() => {
+    if (i18n.resolvedLanguage !== language) i18n.changeLanguage(language);
     document.documentElement.lang = language;
     document.documentElement.dir = dir;
-  }, [language, dir]);
+  }, [i18n, language, dir]);
 
   const setLanguage = (lang) => {
     localStorage.setItem("mm_language", lang);

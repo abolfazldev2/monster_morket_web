@@ -1,5 +1,20 @@
+import logging
+
 from .models import Notification
 from .tasks import create_notification_task
+
+logger = logging.getLogger(__name__)
+
+
+def _dispatch_notification(*args):
+    try:
+        create_notification_task.delay(*args)
+    except Exception:
+        logger.exception("Could not enqueue notification; creating it synchronously.")
+        try:
+            create_notification_task.run(*args)
+        except Exception:
+            logger.exception("Could not create notification synchronously.")
 
 _STATUS_COPY = {
     "PAID": ("Payment confirmed", "We've confirmed your payment for order {order}."),
@@ -11,7 +26,7 @@ _STATUS_COPY = {
 
 
 def notify_order_created(order):
-    create_notification_task.delay(
+    _dispatch_notification(
         order.user_id,
         Notification.NotificationType.ORDER_CREATED,
         f"Order {order.order_number} created",
@@ -21,7 +36,7 @@ def notify_order_created(order):
 
 
 def notify_payment_confirmed(order):
-    create_notification_task.delay(
+    _dispatch_notification(
         order.user_id,
         Notification.NotificationType.PAYMENT_CONFIRMED,
         "Payment confirmed",
@@ -42,7 +57,7 @@ def notify_order_status_changed(order):
         "REFUNDED": Notification.NotificationType.ORDER_REFUNDED,
         "PAID": Notification.NotificationType.PAYMENT_CONFIRMED,
     }
-    create_notification_task.delay(
+    _dispatch_notification(
         order.user_id,
         type_map.get(order.status, Notification.NotificationType.ACCOUNT),
         title,

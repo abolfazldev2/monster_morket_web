@@ -15,14 +15,14 @@ export default function Footer() {
         <div>
           <p className="font-semibold text-text-primary mb-2">{t("home.whyUs")}</p>
           <ul className="space-y-1">
-            <li>Secure ordering</li>
-            <li>Fast fulfillment</li>
-            <li>Trusted marketplace</li>
+            <li>{t("home.whyUsItems.secure")}</li>
+            <li>{t("home.whyUsItems.fast")}</li>
+            <li>{t("home.whyUsItems.trusted")}</li>
           </ul>
         </div>
         <div>
-          <p className="font-semibold text-text-primary mb-2">Support</p>
-          <p>Telegram support available on every order.</p>
+          <p className="font-semibold text-text-primary mb-2">{t("common.support")}</p>
+          <p>{t("common.telegramSupport")}</p>
         </div>
       </div>
     </footer>

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 import Button from "../../components/common/Button";
 import { Input } from "../../components/common/Input";
@@ -6,6 +7,7 @@ import { useAuth } from "../../context/AuthContext";
 import api from "../../services/api";
 
 export default function Profile() {
+  const { t } = useTranslation();
   const { user } = useAuth();
   const [form, setForm] = useState({
     first_name: user?.first_name || "",
@@ -22,26 +24,26 @@ export default function Profile() {
 
   return (
     <div className="max-w-md">
-      <h1 className="text-2xl font-bold mb-6">Profile</h1>
+      <h1 className="text-2xl font-bold mb-6">{t("account.profile")}</h1>
       <div className="flex flex-col gap-4">
-        <Input label="Username" value={user?.username || ""} disabled />
+        <Input label={t("common.username")} value={user?.username || ""} disabled />
         <Input
-          label="First name"
+          label={t("common.firstName")}
           value={form.first_name}
           onChange={(e) => setForm({ ...form, first_name: e.target.value })}
         />
         <Input
-          label="Last name"
+          label={t("common.lastName")}
           value={form.last_name}
           onChange={(e) => setForm({ ...form, last_name: e.target.value })}
         />
         <Input
-          label="Email"
+          label={t("common.email")}
           type="email"
           value={form.email}
           onChange={(e) => setForm({ ...form, email: e.target.value })}
         />
-        <Button onClick={handleSave}>{saved ? "Saved!" : "Save changes"}</Button>
+        <Button onClick={handleSave}>{saved ? t("common.saved") : t("common.saveChanges")}</Button>
       </div>
     </div>
   );

@@ -44,3 +44,14 @@ class AddCartItemSerializer(serializers.Serializer):
         queryset=ProductVariant.objects.all(), required=False, allow_null=True
     )
     quantity = serializers.IntegerField(min_value=1, default=1)
+
+    def validate(self, attrs):
+        product = attrs["product_id"]
+        variant = attrs.get("variant_id")
+        if variant and variant.product_id != product.id:
+            raise serializers.ValidationError({"variant_id": "Variant does not belong to this product."})
+        return attrs
+
+
+class UpdateCartItemSerializer(serializers.Serializer):
+    quantity = serializers.IntegerField(min_value=1)

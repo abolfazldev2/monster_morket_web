@@ -1,4 +1,5 @@
 from rest_framework import permissions, viewsets
+from rest_framework.exceptions import ValidationError
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
@@ -25,8 +26,12 @@ class PaymentViewSet(viewsets.ReadOnlyModelViewSet):
         payment = self.get_object()
         serializer = ConfirmPaymentSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        confirm_payment(
-            payment, request.user, ip_address=get_client_ip(request),
-            note=serializer.validated_data.get("note", ""),
-        )
+        try:
+            payment = confirm_payment(
+                payment, request.user, ip_address=get_client_ip(request),
+                transaction_reference=serializer.validated_data["transaction_reference"],
+                note=serializer.validated_data.get("note", ""),
+            )
+        except ValueError as exc:
+            raise ValidationError({"detail": str(exc)}) from exc
         return Response(PaymentSerializer(payment).data)

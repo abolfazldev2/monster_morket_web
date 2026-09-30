@@ -9,7 +9,6 @@ class SteamGiftStrategy(BaseDeliveryStrategy):
         "STEAM_FRIEND_REQUESTED", "WAITING_TRADE", "DELIVERED", "COMPLETED",
     ]
     admin_actions = [
-        {"action": "confirm_payment", "label": "Confirm Payment", "to_status": "PAID"},
         {"action": "start_fulfillment", "label": "Start Fulfillment", "to_status": "PROCESSING"},
         {"action": "friend_requested", "label": "Friend Request Sent", "to_status": "STEAM_FRIEND_REQUESTED"},
         {"action": "trade_ready", "label": "Gift Ready", "to_status": "WAITING_TRADE"},

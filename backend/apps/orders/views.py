@@ -7,10 +7,11 @@ from rest_framework.throttling import ScopedRateThrottle
 
 from apps.cart.services import get_or_create_cart
 from common.permissions import IsAnyAdmin
+from common.validators import get_client_ip
 
 from .models import Order
 from .serializers import CreateOrderSerializer, OrderDetailSerializer, OrderListSerializer
-from .services import create_order_from_cart
+from .services import cancel_unpaid_order, create_order_from_cart
 
 
 class OrderViewSet(viewsets.ModelViewSet):
@@ -55,4 +56,15 @@ class OrderViewSet(viewsets.ModelViewSet):
         order = self.get_queryset().filter(order_number=kwargs.get("pk")).first()
         if not order:
             return Response(status=status.HTTP_404_NOT_FOUND)
+        return Response(OrderDetailSerializer(order).data)
+
+    @action(detail=True, methods=["post"], permission_classes=[IsAnyAdmin])
+    def cancel_unpaid(self, request, pk=None):
+        order = self.get_queryset().filter(order_number=pk).first()
+        if not order:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+        try:
+            order = cancel_unpaid_order(order, request.user, ip_address=get_client_ip(request))
+        except ValueError as exc:
+            raise ValidationError({"detail": str(exc)}) from exc
         return Response(OrderDetailSerializer(order).data)
