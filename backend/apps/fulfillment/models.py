@@ -40,6 +40,7 @@ class Fulfillment(TimeStampedModel):
     # public Steam identifiers only — never credentials
     steam_profile_url = models.CharField(max_length=200, blank=True)
     steam_id64 = models.CharField(max_length=17, blank=True)
+    steam_trade_url = models.URLField(max_length=500, blank=True)
 
     delivery_data = models.JSONField(default=dict, blank=True, help_text="e.g. issued game code")
 

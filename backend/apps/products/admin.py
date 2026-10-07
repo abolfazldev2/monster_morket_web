@@ -20,8 +20,8 @@ class ProductRequiredFieldInline(admin.TabularInline):
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ("name", "game", "category", "base_price", "stock", "is_active", "delivery_method")
-    list_filter = ("game", "category", "is_active", "delivery_method")
+    list_display = ("name", "game", "category", "seller", "is_marketplace_listing", "seller_approved", "base_price", "stock", "is_active", "delivery_method")
+    list_filter = ("game", "category", "is_active", "is_marketplace_listing", "seller_approved", "delivery_method")
     search_fields = ("name", "slug")
     prepopulated_fields = {"slug": ("name",)}
     inlines = [ProductVariantInline, ProductTranslationInline, ProductRequiredFieldInline]

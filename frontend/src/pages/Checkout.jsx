@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
 import Button from "../components/common/Button";
 import DynamicFieldRenderer from "../components/checkout/DynamicFieldRenderer";
 import { useCart } from "../context/CartContext";
-import { productsApi, ordersApi, couponsApi } from "../services/resources";
+import { productsApi, ordersApi, couponsApi, steamApi } from "../services/resources";
 import { useQueries } from "@tanstack/react-query";
 
 export default function Checkout() {
@@ -33,6 +33,27 @@ export default function Checkout() {
   const productBySlug = Object.fromEntries(
     productQueries.filter((q) => q.data).map((q) => [q.data.slug, q.data])
   );
+  const linkedSteamCartItemIds = cart.items
+    ?.filter((item) => productBySlug[item.product_slug]?.required_fields?.some((field) => field.field_key === "steam_profile_url"))
+    .map((item) => item.id)
+    .join(",") || "";
+
+  useEffect(() => {
+    if (!linkedSteamCartItemIds || !localStorage.getItem("mm_access_token")) return;
+    steamApi.connection().then(({ data }) => {
+      if (!data.steam_id64) return;
+      const profileUrl = `https://steamcommunity.com/profiles/${data.steam_id64}`;
+      setValues((previous) => {
+        const next = { ...previous };
+        linkedSteamCartItemIds.split(",").forEach((id) => {
+          if (!next[id]?.steam_profile_url) {
+            next[id] = { ...(next[id] || {}), steam_profile_url: profileUrl };
+          }
+        });
+        return next;
+      });
+    }).catch(() => {});
+  }, [linkedSteamCartItemIds]);
 
   const handleFieldChange = (cartItemId, key, value) => {
     setValues((prev) => ({

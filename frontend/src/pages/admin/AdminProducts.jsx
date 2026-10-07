@@ -22,6 +22,7 @@ const emptyForm = {
   stock: "",
   delivery_method: "STEAM_GIFT",
   is_active: true,
+  seller_approved: false,
 };
 
 export default function AdminProducts() {
@@ -63,6 +64,7 @@ export default function AdminProducts() {
       stock: product.stock ?? "",
       delivery_method: product.delivery_method,
       is_active: product.is_active,
+      seller_approved: product.seller_approved,
     });
     setFormError("");
   };
@@ -187,6 +189,10 @@ export default function AdminProducts() {
             />
             {t("admin.products.active")}
           </label>
+          {form.id && products.find((p) => p.id === form.id)?.seller && <label className="flex items-center gap-2 mt-3 text-sm">
+            <input type="checkbox" checked={Boolean(form.seller_approved)} onChange={(e) => setForm({ ...form, seller_approved: e.target.checked, is_active: e.target.checked ? true : false })} />
+            {t("admin.products.approveSellerListing")}
+          </label>}
           <div className="flex gap-3 mt-5">
             <Button disabled={saving} onClick={handleSave}>
               {t("admin.products.save")}
@@ -207,6 +213,7 @@ export default function AdminProducts() {
             <tr>
               <th className="text-start py-2">{t("admin.products.name")}</th>
               <th className="text-start py-2">{t("admin.products.game")}</th>
+              <th className="text-start py-2">{t("market.title")}</th>
               <th className="text-start py-2">{t("admin.products.columnPrice")}</th>
               <th className="text-start py-2">{t("admin.products.columnStock")}</th>
               <th className="text-start py-2">{t("admin.products.columnStatus")}</th>
@@ -218,6 +225,7 @@ export default function AdminProducts() {
               <tr key={p.id} className="border-b border-border-subtle last:border-0">
                 <td className="py-3">{p.name}</td>
                 <td className="py-3 text-text-secondary">{p.game_name}</td>
+                <td className="py-3 text-text-secondary">{p.seller_name ? `${p.seller_name} · ${p.seller_approved ? t("admin.products.approved") : t("admin.products.pendingReview")}` : "—"}</td>
                 <td className="py-3 tabular-nums">{p.base_price}</td>
                 <td className="py-3 tabular-nums">{p.stock ?? "∞"}</td>
                 <td className="py-3">

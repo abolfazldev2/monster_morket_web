@@ -1,3 +1,5 @@
+from decimal import Decimal
+
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
 from django.test import TestCase
@@ -66,4 +68,29 @@ class CreateOrderTests(TestCase):
         self.assertEqual(self.product.stock, 3)
         self.assertEqual(variant.stock, 1)
         self.assertEqual(order.items.get().unit_price, Decimal("7.50"))
+
+    def test_linked_steam_details_are_used_for_steam_trade_orders(self):
+        self.user.steam_id64 = "76561198000000001"
+        self.user.steam_trade_url = "https://steamcommunity.com/tradeoffer/new/?partner=123&token=abc"
+        self.user.save(update_fields=["steam_id64", "steam_trade_url"])
+        self.product.delivery_method = DeliveryMethod.STEAM_TRADE
+        self.product.save(update_fields=["delivery_method"])
+        ProductRequiredField.objects.create(
+            product=self.product,
+            field_key="steam_profile_url",
+            label="Steam profile",
+            field_type=ProductRequiredField.FieldType.URL,
+            validation_regex=r"^https://steamcommunity\.com/(id|profiles)/[\w-]+/?$",
+        )
+
+        order = create_order_from_cart(self.cart, self.user, {str(self.cart_item.id): {"region": "eu"}})
+
+        order_item = order.items.get()
+        self.assertEqual(
+            order_item.customer_data["steam_profile_url"],
+            "https://steamcommunity.com/profiles/76561198000000001",
+        )
+        fulfillment = order_item.fulfillment
+        self.assertEqual(fulfillment.steam_id64, self.user.steam_id64)
+        self.assertEqual(fulfillment.steam_trade_url, self.user.steam_trade_url)
 from decimal import Decimal

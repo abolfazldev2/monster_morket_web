@@ -63,6 +63,11 @@ export default function AdminFulfillment() {
                     Steam: <span className="text-text-primary">{detail.steam_profile_url}</span>
                   </p>
                 )}
+                {detail.steam_trade_url && (
+                  <p className="text-sm text-text-secondary mb-2">
+                    Trade URL: <a href={detail.steam_trade_url} target="_blank" rel="noreferrer" className="text-accent-primary underline">{detail.steam_trade_url}</a>
+                  </p>
+                )}
 
                 <div className="flex flex-wrap gap-2 mb-4">
                   {detail.available_actions?.map((action) => (

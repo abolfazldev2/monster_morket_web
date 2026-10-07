@@ -7,6 +7,7 @@ from apps.cart.services import merge_guest_cart_into_user_cart
 from apps.coupons.urls import admin_urlpatterns as coupons_admin_urls
 from apps.reviews.urls import admin_urlpatterns as reviews_admin_urls
 from apps.users.urls import admin_urlpatterns as users_admin_urls
+from apps.products.urls import seller_router
 
 
 # یک کلاس سفارشی برای صدور توکن که سبد خرید را هم هندل می‌کند
@@ -27,6 +28,7 @@ urlpatterns = [
     path("api/users/", include("apps.users.urls")),
     path("api/games/", include("apps.games.urls")),
     path("api/", include("apps.products.urls")),
+    path("api/seller/", include(seller_router.urls)),
     path("api/cart/", include("apps.cart.urls")),
     path("api/orders/", include("apps.orders.urls")),
     path("api/payments/", include("apps.payments.urls")),

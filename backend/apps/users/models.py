@@ -19,6 +19,9 @@ class User(AbstractUser):
     email = models.EmailField(unique=True)
     is_email_verified = models.BooleanField(default=False)
     preferred_language = models.CharField(max_length=8, default="en")
+    # Steam identity is linked only after validating a Steam OpenID response.
+    steam_id64 = models.CharField(max_length=17, blank=True, null=True, unique=True)
+    steam_trade_url = models.URLField(max_length=500, blank=True)
 
     USERNAME_FIELD = "username"
     REQUIRED_FIELDS = ["email"]

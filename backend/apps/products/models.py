@@ -1,5 +1,6 @@
-from django.core.validators import MinValueValidator
+from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
+from django.conf import settings
 
 from apps.games.models import Category, Game
 from common.models import TimeStampedModel
@@ -34,6 +35,20 @@ class Product(TimeStampedModel):
     cover_image = models.ImageField(upload_to="products/covers/", null=True, blank=True)
     is_featured = models.BooleanField(default=False)
     is_best_seller = models.BooleanField(default=False)
+    seller = models.ForeignKey(
+        settings.AUTH_USER_MODEL, null=True, blank=True, on_delete=models.SET_NULL,
+        related_name="marketplace_listings",
+    )
+    is_marketplace_listing = models.BooleanField(default=False)
+    seller_approved = models.BooleanField(default=False)
+    wear = models.CharField(max_length=32, blank=True)
+    float_value = models.DecimalField(
+        max_digits=8, decimal_places=6, null=True, blank=True,
+        validators=[MinValueValidator(0), MaxValueValidator(1)],
+    )
+    rarity = models.CharField(max_length=64, blank=True)
+    stickers = models.JSONField(default=list, blank=True)
+    pattern_id = models.PositiveIntegerField(null=True, blank=True)
 
     class Meta:
         ordering = ["-created_at"]

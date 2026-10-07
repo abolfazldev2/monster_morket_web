@@ -29,8 +29,9 @@ class UserSerializer(serializers.ModelSerializer):
         fields = [
             "id", "username", "email", "first_name", "last_name",
             "role", "preferred_language", "date_joined",
+            "steam_id64", "steam_trade_url",
         ]
-        read_only_fields = ["id", "role", "date_joined"]
+        read_only_fields = ["id", "role", "date_joined", "steam_id64", "steam_trade_url"]
 
 
 class AccountStatsSerializer(serializers.Serializer):

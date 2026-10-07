@@ -5,7 +5,7 @@ from collections import defaultdict
 
 from apps.fulfillment.models import Fulfillment
 from apps.payments.models import Payment
-from apps.products.models import Product, ProductVariant
+from apps.products.models import DeliveryMethod, Product, ProductVariant
 
 from .models import Order, OrderItem
 
@@ -64,6 +64,10 @@ def create_order_from_cart(cart, user, items_customer_data: dict, coupon_code: s
             raise ValidationError(f"A selected variant for {item.product.name} is no longer available.")
         if item.variant and item.variant.stock is not None and item.quantity > item.variant.stock:
             raise ValidationError(f"Insufficient stock for {item.product.name} ({item.variant.name}).")
+        if item.product.seller_id and (not user.steam_id64 or not user.steam_trade_url):
+            raise ValidationError("Connect Steam and save your trade URL before buying a user-listed item.")
+        if item.product.seller_id == user.pk:
+            raise ValidationError("You cannot purchase your own listing.")
     for product_id, quantity in product_quantities.items():
         product = products[product_id]
         if product.stock is not None and quantity > product.stock:
@@ -96,7 +100,22 @@ def create_order_from_cart(cart, user, items_customer_data: dict, coupon_code: s
         coupon.save(update_fields=["times_used"])
 
     for cart_item in cart_items:
-        customer_data = items_customer_data.get(str(cart_item.id), {})
+        customer_data = dict(items_customer_data.get(str(cart_item.id), {}))
+        linked_profile_url = f"https://steamcommunity.com/profiles/{user.steam_id64}" if user.steam_id64 else ""
+        submitted_profile = customer_data.get("steam_profile_url", "")
+        if isinstance(submitted_profile, str):
+            submitted_profile = submitted_profile.strip()
+        uses_linked_steam = bool(
+            linked_profile_url
+            and submitted_profile in {"", linked_profile_url}
+        )
+        if (
+            uses_linked_steam
+            and cart_item.product.delivery_method in {DeliveryMethod.STEAM_TRADE, DeliveryMethod.STEAM_GIFT}
+            and "steam_profile_url" in {field.field_key for field in cart_item.product.required_fields.all()}
+            and not customer_data.get("steam_profile_url")
+        ):
+            customer_data["steam_profile_url"] = linked_profile_url
         _validate_customer_data(cart_item.product, customer_data)
 
         order_item = OrderItem.objects.create(
@@ -114,6 +133,8 @@ def create_order_from_cart(cart, user, items_customer_data: dict, coupon_code: s
             delivery_method=cart_item.product.delivery_method,
             status=Fulfillment.Status.WAITING_FOR_PAYMENT,
             steam_profile_url=customer_data.get("steam_profile_url", ""),
+            steam_id64=user.steam_id64 if uses_linked_steam and cart_item.product.delivery_method in {DeliveryMethod.STEAM_TRADE, DeliveryMethod.STEAM_GIFT} else "",
+            steam_trade_url=user.steam_trade_url if uses_linked_steam and cart_item.product.delivery_method == DeliveryMethod.STEAM_TRADE else "",
         )
 
         if cart_item.product.stock is not None:

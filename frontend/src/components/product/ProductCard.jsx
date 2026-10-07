@@ -44,6 +44,7 @@ export function ProductCard({ product, index = 0 }) {
         <div className="p-4 relative">
           <p className="text-xs text-text-muted uppercase font-display tracking-wider mb-1">{product.game}</p>
           <p className="font-medium text-text-primary truncate">{product.name}</p>
+          {product.seller_name && <p className="text-xs text-text-muted mt-1">{t("market.soldBy", { seller: product.seller_name })}</p>}
           <div className="flex items-center justify-between mt-3">
             <span className="font-display font-semibold text-lg tabular-nums text-accent-primary">
               {product.base_price} <span className="text-xs text-text-muted">{product.currency}</span>

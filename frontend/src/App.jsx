@@ -21,6 +21,8 @@ import Notifications from "./pages/account/Notifications";
 import Profile from "./pages/account/Profile";
 import Settings from "./pages/account/Settings";
 import Wishlist from "./pages/account/Wishlist";
+import SteamInventory from "./pages/account/SteamInventory";
+import SellerMarket from "./pages/account/SellerMarket";
 
 import AdminAuditLogs from "./pages/admin/AdminAuditLogs";
 import AdminCoupons from "./pages/admin/AdminCoupons";
@@ -58,6 +60,8 @@ export default function App() {
         <Route path="wishlist" element={<Wishlist />} />
         <Route path="notifications" element={<Notifications />} />
         <Route path="settings" element={<Settings />} />
+        <Route path="inventory" element={<SteamInventory />} />
+        <Route path="market" element={<SellerMarket />} />
       </Route>
 
       <Route path="/admin" element={<AdminLayout />}>

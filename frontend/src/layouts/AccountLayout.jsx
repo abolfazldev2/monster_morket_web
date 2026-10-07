@@ -19,6 +19,8 @@ export default function AccountLayout() {
     { to: "/account/wishlist", label: t("common.wishlist") },
     { to: "/account/notifications", label: t("account.notifications") },
     { to: "/account/settings", label: t("account.settings") },
+    { to: "/account/inventory", label: t("steam.inventoryTitle") },
+    { to: "/account/market", label: t("market.title") },
   ];
 
   return (

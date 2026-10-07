@@ -1,3 +1,4 @@
+from django.db import models
 from rest_framework import permissions, viewsets
 
 from .filters import ProductFilter
@@ -8,7 +9,11 @@ from .serializers import ProductDetailSerializer, ProductListSerializer
 class ProductViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = (
         Product.objects.filter(is_active=True)
-        .select_related("game", "category")
+        .filter(
+            models.Q(is_marketplace_listing=False)
+            | models.Q(is_marketplace_listing=True, seller_approved=True, seller__isnull=False)
+        )
+        .select_related("game", "category", "seller")
         .prefetch_related("translations", "variants", "required_fields")
     )
     permission_classes = [permissions.AllowAny]

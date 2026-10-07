@@ -21,7 +21,7 @@ class FulfillmentSerializer(serializers.ModelSerializer):
         model = Fulfillment
         fields = [
             "id", "delivery_method", "status", "assigned_admin", "assigned_admin_name",
-            "steam_profile_url", "steam_id64", "delivery_data",
+            "steam_profile_url", "steam_id64", "steam_trade_url", "delivery_data",
             "friend_requested_at", "trade_ready_at", "delivered_at", "completed_at",
             "notes", "available_actions", "created_at",
         ]

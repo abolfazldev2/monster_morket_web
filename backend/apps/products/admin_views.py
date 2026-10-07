@@ -32,6 +32,7 @@ class AdminProductSerializer(serializers.ModelSerializer):
     translations = AdminProductTranslationSerializer(many=True, read_only=True)
     game_name = serializers.CharField(source="game.name", read_only=True)
     category_name = serializers.CharField(source="category.name", read_only=True)
+    seller_name = serializers.CharField(source="seller.username", read_only=True, default="")
 
     class Meta:
         model = Product
@@ -40,7 +41,8 @@ class AdminProductSerializer(serializers.ModelSerializer):
             "description", "product_type", "base_price", "currency", "stock",
             "is_active", "delivery_method", "cover_image", "is_featured",
             "is_best_seller", "variants", "required_fields", "translations",
-            "created_at", "updated_at",
+            "seller", "seller_name", "is_marketplace_listing", "seller_approved", "wear", "float_value", "rarity",
+            "stickers", "pattern_id", "created_at", "updated_at",
         ]
         read_only_fields = ["id", "created_at", "updated_at"]
 
@@ -53,7 +55,7 @@ class AdminProductViewSet(viewsets.ModelViewSet):
     )
     serializer_class = AdminProductSerializer
     permission_classes = [IsAnyAdmin]
-    filterset_fields = ["game", "category", "is_active"]
+    filterset_fields = ["game", "category", "is_active", "is_marketplace_listing", "seller_approved", "seller"]
 
     def perform_update(self, serializer):
         from common.models import AuditLog

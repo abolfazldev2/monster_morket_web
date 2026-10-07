@@ -9,6 +9,7 @@ from .views import (
     PasswordResetRequestView,
     RegisterView,
 )
+from .steam import SteamCallbackView, SteamConnectView, SteamConnectionView, SteamInventoryView
 
 urlpatterns = [
     path("register/", RegisterView.as_view(), name="register"),
@@ -16,6 +17,10 @@ urlpatterns = [
     path("me/stats/", AccountStatsView.as_view(), name="account-stats"),
     path("password-reset/", PasswordResetRequestView.as_view(), name="password-reset"),
     path("password-reset/confirm/", PasswordResetConfirmView.as_view(), name="password-reset-confirm"),
+    path("steam/connect/", SteamConnectView.as_view(), name="steam-connect"),
+    path("steam/callback/", SteamCallbackView.as_view(), name="steam-callback"),
+    path("steam/connection/", SteamConnectionView.as_view(), name="steam-connection"),
+    path("steam/inventory/", SteamInventoryView.as_view(), name="steam-inventory"),
 ]
 
 admin_router = DefaultRouter()

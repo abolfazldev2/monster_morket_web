@@ -76,6 +76,7 @@ export default function ProductDetails() {
           {product.game} / {product.category}
         </p>
         <h1 className="text-2xl font-bold mb-4">{product.name}</h1>
+        {product.seller_name && <p className="text-sm text-text-secondary mb-3">{t("market.soldBy", { seller: product.seller_name })}</p>}
 
         {product.variants?.length > 0 && (
           <div className="flex gap-2 mb-4 flex-wrap">
@@ -104,6 +105,11 @@ export default function ProductDetails() {
           <dd>{product.in_stock ? t("common.available") : t("common.outOfStock")}</dd>
           <dt className="text-text-muted">{t("common.delivery")}</dt>
           <dd>{product.delivery_method?.replaceAll("_", " ")}</dd>
+          {product.wear && <><dt className="text-text-muted">{t("shop.wearLabel")}</dt><dd>{product.wear}</dd></>}
+          {product.float_value && <><dt className="text-text-muted">{t("shop.floatLabel")}</dt><dd>{product.float_value}</dd></>}
+          {product.rarity && <><dt className="text-text-muted">{t("shop.rarity")}</dt><dd>{product.rarity}</dd></>}
+          {product.pattern_id && <><dt className="text-text-muted">{t("shop.patternId")}</dt><dd>{product.pattern_id}</dd></>}
+          {product.stickers?.length > 0 && <><dt className="text-text-muted">{t("shop.sticker")}</dt><dd>{product.stickers.join(", ")}</dd></>}
         </dl>
 
         <p className="text-text-secondary mb-6">{product.description}</p>

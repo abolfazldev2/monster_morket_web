@@ -10,6 +10,15 @@ export const productsApi = {
   detail: (slug) => api.get(`/products/${slug}/`),
 };
 
+export const sellerApi = {
+  listings: () => api.get("/seller/listings/"),
+  createListing: (payload) => api.post("/seller/listings/", payload),
+  updateListing: (id, payload) => api.patch(`/seller/listings/${id}/`, payload),
+  removeListing: (id) => api.delete(`/seller/listings/${id}/`),
+  sales: () => api.get("/seller/sales/"),
+  markDelivered: (id) => api.post(`/seller/sales/${id}/mark-delivered/`),
+};
+
 export const cartApi = {
   get: () => api.get("/cart/"),
   addItem: (payload) => api.post("/cart/items/", payload),
@@ -29,6 +38,14 @@ export const authApi = {
   login: (payload) => api.post("/auth/token/", payload),
   me: () => api.get("/users/me/"),
   stats: () => api.get("/users/me/stats/"),
+};
+
+export const steamApi = {
+  beginConnect: () => api.post("/users/steam/connect/"),
+  connection: () => api.get("/users/steam/connection/"),
+  saveTradeUrl: (trade_url) => api.patch("/users/steam/connection/", { trade_url }),
+  disconnect: () => api.delete("/users/steam/connection/"),
+  inventory: (game) => api.get("/users/steam/inventory/", { params: { game } }),
 };
 
 export const wishlistApi = {

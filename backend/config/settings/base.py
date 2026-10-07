@@ -166,3 +166,7 @@ CELERY_BEAT_SCHEDULE = {
 
 # ---- MONSTER Market specific ----
 TELEGRAM_SUPPORT_USERNAME = config("TELEGRAM_SUPPORT_USERNAME", default="abolfazls-s")
+FRONTEND_URL = config("FRONTEND_URL", default="http://localhost:5173")
+STEAM_OPENID_RETURN_URL = config(
+    "STEAM_OPENID_RETURN_URL", default="http://localhost/api/users/steam/callback/"
+)
